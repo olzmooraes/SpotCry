@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# **SpotiCry Web App**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Uma aplicação web para gerenciar músicas e playlists utilizando a API SpotiCry.
 
-## Available Scripts
+![exemplo](exemploFront.png)
 
-In the project directory, you can run:
+## **Índice**
 
-### `npm start`
+- Funcionalidades
+- Tecnologias Utilizadas
+- Instalação e Uso
+- Contribuição
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## **Funcionalidades**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Registro e Autenticação de Usuário.
+- Gestão de Músicas: Listar, Adicionar, Editar, Excluir.
+- Gestão de Playlists: Criar, Listar, Editar, Excluir, Adicionar músicas, Remover músicas, Buscar por título.
 
-### `npm test`
+## **Tecnologias Utilizadas**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Frontend: React, Axios
 
-### `npm run build`
+## **Instalação e Uso**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone o Repositório:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    git clone https://github.com/FlavioAAMotta/spoticry-front.git
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Instale as Dependências:**
 
-### `npm run eject`
+    ```bash
+    npm install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Execute a Aplicação:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    # No diretório do projeto
+    npm start
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## **Contribuição**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Contribuições são sempre bem-vindas! Para contribuir:
 
-## Learn More
+1. Faça um fork do projeto.
+2. Crie uma nova branch com suas modificações: **`git checkout -b minha-modificacao`**.
+3. Salve suas modificações e faça um commit: **`git commit -m 'Descreva sua modificação'`**.
+4. Envie sua branch: **`git push origin minha-modificacao`**.
+5. Faça o pull request.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## **Demo**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Você pode acessar uma versão ao vivo do SpotiCry Web App [aqui](https://flavioaamotta.github.io/spoticry-front/).
