@@ -5,19 +5,19 @@ import { LoginForm } from "../components/LoginForm/LoginForm";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-
+  
   const goHome = () => {
     goToHomePage(navigate);
   };
-
+ 
   return (
-    <LoginContainer>
-      <ImageContainer />
-      <LoginForm>
-        <h1>Login</h1>
-        <p>login página</p>
-        <button onClick={goHome}>Home</button>
-      </LoginForm>
-    </LoginContainer>
-  );
+      <LoginContainer>
+        <ImageContainer />
+        <LoginForm>
+          <h1>Login</h1>
+          <p>login página</p>
+          <button onClick={goHome}>Home</button>
+        </LoginForm>
+      </LoginContainer>
+    )
 };
