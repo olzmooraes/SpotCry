@@ -27,8 +27,8 @@ export const Playlists = () => {
     const addPlaylist = () => {
         goToAddPlaylist(navigate)
     }
-    const goSongsFomPLaylist = () => {
-        goToSongsFromPlaylist(navigate)
+    const goSongsFomPLaylist = (playlist) => {
+        goToSongsFromPlaylist(navigate, playlist)
     }
     if (!loading) {
         return (
@@ -37,7 +37,7 @@ export const Playlists = () => {
                 <Style.CardPlaylist>
                     {Array.isArray(playlists) &&
                         playlists.map((playlist, index) => (
-                            <Style.CardContainer onClick={goSongsFomPLaylist} key={playlist._id}>
+                            <Style.CardContainer onClick={goSongsFomPLaylist(playlist._id)} key={playlist._id}>
                                 <Style.CardImage src={logo} alt="logo" />
                                 <Style.CardInfo>
                                     <Style.CardTitle>{playlist._name}</Style.CardTitle>

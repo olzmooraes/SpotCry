@@ -48,3 +48,74 @@ export const CardDescription = styled.p`
   color: ${COLORS.darkGray};
   margin: 4px 0;
 `;
+
+
+// COMECA OS STYLED COMPONENTS DO COMPONENTE DE ADICIONAR PLAYLIST
+
+export const ContainerAddMusic = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+// Estilos para o formulário
+export const FormAddMusic = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+
+// Estilos para o conteúdo da esquerda (imagem e título)
+export const LeftContentAddMusic = styled.div`
+  margin-right: 20px;
+`;
+
+export const TitleAddMusic = styled.h1`
+  margin-bottom: 10px;
+`;
+
+export const ImageAddMusic = styled.img`
+  max-width: 100px;
+  height: auto;
+`;
+
+// Estilos para os inputs
+export const FormInputsAddMusic = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const InputAddMusic = styled.input`
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+`;
+
+export const ButtonAddMusic = styled.button`
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+export const BackButtonAddMusic = styled(ButtonAddMusic)`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+`;

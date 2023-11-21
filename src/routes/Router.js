@@ -6,12 +6,14 @@ import { LoginPage } from "../pages/LoginPage";
 import FeedPage from "../pages/FeedPage";
 import { AddPlaylist } from "../components/playlists/AddPlaylist";
 import { SongsFromPLaylist } from "../components/SongsFromPlaylist/SongsFromPLaylist";
+import { AddMusic } from "../components/musics/AddMusics";
 
 const Router = () => (
   <Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/addplaylist" element={<AddPlaylist />} />
+    <Route path="/addsongs" element={<AddMusic />} />
     <Route path="/feed" element={<FeedPage />} />
     <Route path="/SongsFromPLaylist" element={<SongsFromPLaylist/>} />
   </Routes>

@@ -4,10 +4,13 @@ import { Loading } from '../loading/Loading'
 import * as Style from './Style'
 import logo from '../../assets/logoHeader.png'
 import { AddCircleOutline } from '@mui/icons-material';
+import { goToAddMusic } from '../../routes/Coordinator'
+import { useNavigate } from 'react-router-dom'
 
 export const Musics = () => {
   const [musics, setMusics] = useState([])
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
 
   const getMusics = async () => {
     try {
@@ -23,10 +26,13 @@ export const Musics = () => {
   useEffect(() => {
     getMusics();
   }, []);
+  const addmusic = () => {
+    goToAddMusic(navigate);
+  }
   if (!loading) {
     return (
       <div>
-        <Style.Title>Songs <AddCircleOutline key={"circleAddMusic"}/> </Style.Title>
+        <Style.Title>Songs <AddCircleOutline onClick={addmusic}/> </Style.Title>
         <Style.CardMusic>
             {Array.isArray(musics) &&
               musics.map((musics, index) => (

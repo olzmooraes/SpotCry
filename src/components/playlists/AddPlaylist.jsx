@@ -33,8 +33,8 @@ export const AddPlaylist = () => {
                     <Style.ImageAddPlaylist src={logo} alt="AddPlaylistImage" />
                 </Style.LeftContentAddPlaylist>
                 <Style.FormInputsAddPlaylist>
-                    <Style.InputAddPlaylist type="text" placeholder="Digite algo" />
-                    <Style.InputAddPlaylist type="text" placeholder="Digite algo" />
+                    <Style.InputAddPlaylist type="text" placeholder="Nome" />
+                    <Style.InputAddPlaylist type="text" placeholder="Descrição" />
                     <Style.ButtonAddPlaylist onClick={postNewPlaylist()}>Concluir</Style.ButtonAddPlaylist>
                 </Style.FormInputsAddPlaylist>
             </Style.FormAddPlaylist>

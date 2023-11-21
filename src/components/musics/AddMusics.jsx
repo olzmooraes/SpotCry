@@ -1,10 +1,30 @@
-import {React, useState, useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import * as Style from "./Style"
+import logo from "../../assets/logoHeader.png"
+import { goBack, goToSongsFromPlaylist } from "../../routes/Coordinator";
+import { useNavigate } from "react-router-dom";
 
-export const AddMusic = ()=>{
-    return(
+export const AddMusic = () => {
+    const navigate = useNavigate()
+    const backFeed = ()=>{
+        goBack(navigate)
+    }
+    return (
         <>
-        
+            <Style.ContainerAddMusic>
+                <Style.BackButtonAddMusic onClick={backFeed}>Voltar</Style.BackButtonAddMusic>
+                <Style.FormAddMusic>
+                    <Style.LeftContentAddMusic>
+                        <Style.TitleAddMusic>Adicionar Song</Style.TitleAddMusic>
+                        <Style.ImageAddMusic src={logo} alt="AddPlaylistImage" />
+                    </Style.LeftContentAddMusic>
+                    <Style.FormInputsAddMusic>
+                        <Style.InputAddMusic type="text" placeholder="Nome" />
+                        <Style.InputAddMusic type="text" placeholder="Descrição" />
+                        <Style.ButtonAddMusic>Concluir</Style.ButtonAddMusic>
+                    </Style.FormInputsAddMusic>
+                </Style.FormAddMusic>
+            </Style.ContainerAddMusic>
         </>
     )
 }
