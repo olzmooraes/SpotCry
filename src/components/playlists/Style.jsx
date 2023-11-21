@@ -7,6 +7,10 @@ export const CardPlaylist = Styled.div`
     gap: 16px;
 
 `
+export const Title = Styled.h1`
+    color: ${COLORS.yellow};
+    margin: 20px 0;
+`
 export const CardContainer = Styled.div`
   width: 100%;
   height: 100%;

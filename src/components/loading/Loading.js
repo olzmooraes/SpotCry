@@ -1,17 +1,11 @@
 import React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import * as Style from './Style'
 
 export const Loading = ()=>{
     return(
-        <>
-            <h1>Loading...</h1>
-            <h1>Loading...</h1>
-            <h1>Loading...</h1>
-            <h1>Loading...</h1>
-            <h1>Loading...</h1>
-            <h1>Loading...</h1>
-            <h1>Loading...</h1>
-            <h1>Loading...</h1>
-            <h1>Loading...</h1>
-        </>
+        <Style.Loading>
+            <CircularProgress />
+        </Style.Loading>
     )
 }

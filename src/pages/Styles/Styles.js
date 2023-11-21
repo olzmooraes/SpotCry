@@ -15,4 +15,11 @@ export const ImageContainer = styled.div`
   background-repeat: no-repeat;
 `;
 
-
+export const FeedContainer = styled.div`
+  display:flex;
+  justify-content: center;
+  alling-items: center;
+  margin: 0 10rem;
+  height: 100%;
+  flex-direction: column;
+`

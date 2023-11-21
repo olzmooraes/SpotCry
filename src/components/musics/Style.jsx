@@ -3,6 +3,7 @@ import { COLORS } from "../../constants/colors";
 
 export const Title = styled.h1`
     color: ${COLORS.yellow};
+    margin: 20px 0;
 `
 
 export const CardMusic = styled.div`

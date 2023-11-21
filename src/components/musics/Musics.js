@@ -3,6 +3,7 @@ import { getMusicsFromUser } from '../../services/musics'
 import { Loading } from '../loading/Loading'
 import * as Style from './Style'
 import logo from '../../assets/logoHeader.png'
+import { AddCircleOutline } from '@mui/icons-material';
 
 export const Musics = () => {
   const [musics, setMusics] = useState([])
@@ -25,7 +26,7 @@ export const Musics = () => {
   if (!loading) {
     return (
       <div>
-        <Style.Title>My Songs</Style.Title>
+        <Style.Title>Songs <AddCircleOutline key={"circleAddMusic"}/> </Style.Title>
         <Style.CardMusic>
             {Array.isArray(musics) &&
               musics.map((musics, index) => (
@@ -43,6 +44,7 @@ export const Musics = () => {
   } else {
     return (
       <>
+        <Style.Title>Songs <AddCircleOutline key={"circleAddMusic"}/> </Style.Title>
         <Loading />
       </>
     )
