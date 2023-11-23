@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import * as Style from "./Style"
 import logo from "../../assets/logoHeader.png"
-import { goBack, goToSongsFromPlaylist } from "../../routes/Coordinator";
+import { goBack, goToDetailPage } from "../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 
 export const AddMusic = () => {

@@ -1,9 +1,11 @@
 import axios from "axios";
 import { BASE_URL } from "../constants/urls";
+import { goToFeed } from "../routes/Coordinator";
+import { getTokenData } from "./getTokenData";
 
-export const getMusicFromPlaylist = (idPLaylist) => {
+export const getPlaylistById = (id) => {
     const token = localStorage.getItem("token")
-        return axios.get(`${BASE_URL}playlist/${idPLaylist}/song`, {
+        return axios.get(`${BASE_URL}playlist/${id}`, {
             headers: {
                 Authorization: token,
             },

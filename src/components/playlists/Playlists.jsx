@@ -3,15 +3,17 @@ import { getPlaylistsFromUser } from '../../services/playlist'
 import { Loading } from '../loading/Loading';
 import { AddCircle, AddCircleOutline } from '@mui/icons-material';
 import { useNavigate } from "react-router-dom";
-import { goToAddPlaylist, goToSongsFromPlaylist } from '../../routes/Coordinator';
+import { goToAddPlaylist, goToDetailPage } from '../../routes/Coordinator';
 import logo from "../../assets/logoHeader.png";
 import * as Style from './Style'
+import { getTokenData } from '../../services/getTokenData';
 
 export const Playlists = () => {
     const [playlists, setPlaylists] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
     useEffect(() => {
+        getTokenData(localStorage.getItem('token'))
         fetchPlaylists();
     }, []);
 
@@ -27,9 +29,6 @@ export const Playlists = () => {
     const addPlaylist = () => {
         goToAddPlaylist(navigate)
     }
-    const goSongsFomPLaylist = (playlist) => {
-        goToSongsFromPlaylist(navigate, playlist)
-    }
     if (!loading) {
         return (
             <div>
@@ -37,7 +36,7 @@ export const Playlists = () => {
                 <Style.CardPlaylist>
                     {Array.isArray(playlists) &&
                         playlists.map((playlist, index) => (
-                            <Style.CardContainer onClick={goSongsFomPLaylist(playlist._id)} key={playlist._id}>
+                            <Style.CardContainer onClick={()=>{goToDetailPage(navigate, playlist._id)}} key={playlist._id}>
                                 <Style.CardImage src={logo} alt="logo" />
                                 <Style.CardInfo>
                                     <Style.CardTitle>{playlist._name}</Style.CardTitle>
