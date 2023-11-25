@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as Style from "./Style"
 import { useNavigate } from "react-router-dom";
-import { goToAddMusic, goToFeed } from "../../routes/Coordinator";
+import { goToAddMusicByPlaylist, goToFeed } from "../../routes/Coordinator";
 import { Loading } from "../loading/Loading";
 import { AddCircle, AddCircleOutline } from '@mui/icons-material';
 import { useParams } from "react-router-dom"
@@ -9,6 +9,9 @@ import { getMusicFromPlaylist } from "../../services/musicFromPlaylist";
 import { getMusicsFromId } from "../../services/musicsFromId";
 import { Stack, Container, Box, Paper, Grid } from "@mui/material";
 import { getPlaylistById } from "../../services/playlistById";
+import { AddMusicByPlaylist } from "../musics/AddMusicsByPlaylist";
+import { addMusicForPLaylist } from "../../services/addMusicForPlaylist";
+import { getMusicsFromUser } from "../../services/musics";
 
 export const DetailPlaylist = (props) => {
     const [loading, setLoading] = useState(true);
@@ -16,6 +19,7 @@ export const DetailPlaylist = (props) => {
     const pathParams = useParams()
     const [idSongs, setSongs] = useState([])
     const [detailSongs, setDetailSongs] = useState([])
+    const [musicsForAdd, setMusicsForAdd] = useState([])
 
     const fetchSongsFromPlaylist = async () => {
         try {
@@ -30,9 +34,17 @@ export const DetailPlaylist = (props) => {
     const fetchPlaylistId = async () => {
         try {
             const playlist = await getPlaylistById(pathParams.playlist)
-        }catch(e) {
+        } catch (e) {
 
         }
+    }
+    const getMusicsForAdd = async () => {
+        setLoading(true);
+        const musics = await getMusicsFromUser()
+        const musicsFiltred = musics.data.songs.filter(elemento => elemento.id !== detailSongs.id)
+        setMusicsForAdd(musicsFiltred)
+        console.log(musicsFiltred)
+        setLoading(false);
     }
     const getDetailMusic = async () => {
         try {
@@ -52,16 +64,16 @@ export const DetailPlaylist = (props) => {
     const feed = () => {
         goToFeed(navigate)
     }
-    const addmusic = () => {
-        goToAddMusic(navigate)
-    }
     useEffect(() => {
         fetchSongsFromPlaylist()
+        getMusicsForAdd()
     }, [])
     useEffect(() => {
         getDetailMusic()
     }, [idSongs])
-
+    const onConfirm = (music) => {
+        addMusicForPLaylist(pathParams.playlist, music)
+    }
     if (!loading) {
         return (
             <>
@@ -79,9 +91,12 @@ export const DetailPlaylist = (props) => {
                                     </Grid>
                                 </Stack>
                             </Container>
+
                         )
                     })
                 }
+                <AddMusicByPlaylist musicsForAdd={musicsForAdd} onConfirm={onConfirm} />
+                <AddCircle></AddCircle>
             </>
         )
     } else {
@@ -89,6 +104,7 @@ export const DetailPlaylist = (props) => {
             <>
                 <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
                 <Loading />
+                <AddCircle></AddCircle>
             </>
         )
     }

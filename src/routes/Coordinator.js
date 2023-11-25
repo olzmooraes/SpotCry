@@ -15,6 +15,9 @@ export const goToAddPlaylist = (navigate) => {
 export const goToAddMusic = (navigate) => {
   navigate("/addsongs");
 };
+export const goToAddMusicByPlaylist = (navigate) => {
+  navigate("/addsongsbyplaylist");
+};
 export const goToDetailPage = (navigate, playlist) => {
   navigate(`/DetailPlaylist/${playlist}`);
 };
