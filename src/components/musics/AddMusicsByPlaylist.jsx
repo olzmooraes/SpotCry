@@ -4,35 +4,48 @@ import logo from "../../assets/logoHeader.png"
 import { goBack, goToDetailPage } from "../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import { Loading } from "../loading/Loading";
+import CloseIcon from '@mui/icons-material/Close';
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
-export const AddMusicByPlaylist = ({ musics, onConfirm}) => {
+
+
+export const AddMusicByPlaylist = ({ musics, onConfirm, onCancel}) => {
     const navigate = useNavigate()
-    const [isVisible, setIsVisible] = useState(true);
     const [selectedMusic, setSelectedMusic] = useState([])
-    const backFeed = () => {
-        goBack(navigate)
+    const [loading, setLoading] = useState(true)
+
+    useProtectedPage()
+
+    const verifyMusic = () => {
+        setLoading(true)
+        if(musics){
+            setLoading(false)
+        }
     }
-    return (
-        <div>
-            {isVisible && (
-                <div className="music-list">
-                    <h2>Lista de músicas</h2>
-                    <ul>
-                        {musics.map((music) => (
-                            <li key={music.id} onClick={() => setSelectedMusic(music.id)}>
-                                {music.title}
-                            </li>
-                        ))}
-                    </ul>
-                    <button onClick={() => {
-                        setIsVisible(false);
-                        onConfirm(selectedMusic)
-                    }}>Confirmar</button>
-                </div>
-            )}
-        </div>
-    );
+    useEffect(()=>{
+        verifyMusic()
+    }, [])
+    if(!loading){
+        return (
+            <Style.PopupContainer>
+                    <Style.PopupContent className="music-list">
+                        <Style.HeaderPopUp>
+                        <Style.PopupTitle>Lista de músicas </Style.PopupTitle>
+                        <CloseIcon onClick={onCancel}/>
+                        </Style.HeaderPopUp>
+                        <Style.PopupList>
+                            {musics.map((song) => (
+                                    <Style.PopupListItem key={song.id} onClick={() => setSelectedMusic(song.id)}>{song.title}</Style.PopupListItem>
+                            ))}
+                        </Style.PopupList>
+                        <button onClick={() => {
+                            onConfirm(selectedMusic)
+                        }}>Confirmar</button>
+                    </Style.PopupContent>
+            </Style.PopupContainer>
+        );
+    }else{
+        <Loading/>
+    }
 }
-AddMusicByPlaylist.show = () => {
-    this.setState({ isVisible: true });
-  };

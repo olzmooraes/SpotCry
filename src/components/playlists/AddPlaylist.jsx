@@ -3,10 +3,14 @@ import { useState, useEffect } from "react"
 import logo from "../../assets/logoHeader.png"
 import {goToFeed} from "../../routes/Coordinator"
 import { useNavigate } from "react-router-dom";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
+
 export const AddPlaylist = () => {
     const [name, setName] = useState()
     const [description, setDescription] = useState()
     const navigate = useNavigate()
+
+    useProtectedPage()
 
     const addName = (e) => {
         setName(e.target.value)

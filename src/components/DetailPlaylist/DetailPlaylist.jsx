@@ -12,20 +12,48 @@ import { getPlaylistById } from "../../services/playlistById";
 import { AddMusicByPlaylist } from "../musics/AddMusicsByPlaylist";
 import { addMusicForPLaylist } from "../../services/addMusicForPlaylist";
 import { getMusicsFromUser } from "../../services/musics";
+import styled from 'styled-components';
+import logo from '../../assets/logoHeader.png';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
+const MusicContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 10px;
+`;
+
+const MusicImage = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
+
+const MusicInfo = styled.div`
+  margin-left: 10px;
+`;
+
+const MusicName = styled.span`
+  font-weight: bold;
+`;
+
+const MusicArtist = styled.span`
+  font-size: 12px;
+`;
 export const DetailPlaylist = (props) => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
     const pathParams = useParams()
     const [idSongs, setSongs] = useState([])
     const [detailSongs, setDetailSongs] = useState([])
-    const [musicsForAdd, setMusicsForAdd] = useState([])
+    const [musicsForAdd, setMusicsForAdd] = useState({})
+    const [visible, setVisible] = useState(false)
 
     const fetchSongsFromPlaylist = async () => {
         try {
             setLoading(true)
             const musicsFromPlaylist = await getMusicFromPlaylist(pathParams.playlist);
-            console.log(musicsFromPlaylist)
             setSongs(musicsFromPlaylist.data.songs);
         } catch (e) {
             console.error("Erro ao buscar Musicas:", e);
@@ -41,9 +69,8 @@ export const DetailPlaylist = (props) => {
     const getMusicsForAdd = async () => {
         setLoading(true);
         const musics = await getMusicsFromUser()
-        const musicsFiltred = musics.data.songs.filter(elemento => elemento.id !== detailSongs.id)
-        setMusicsForAdd(musicsFiltred)
-        console.log(musicsFiltred)
+        //const musicsFiltred = musics.data.songs.filter(elemento => elemento.id !== detailSongs.id)
+        setMusicsForAdd(musics.data.songs)
         setLoading(false);
     }
     const getDetailMusic = async () => {
@@ -64,48 +91,80 @@ export const DetailPlaylist = (props) => {
     const feed = () => {
         goToFeed(navigate)
     }
+    const onConfirm = (music) => {
+        addMusicForPLaylist(pathParams.playlist, music)
+    }
+    const onCancel = () => {
+        setVisible(false)
+    }
+    const popup = () => {
+        if (visible) {
+            return (
+                <>
+                    <AddMusicByPlaylist musics={musicsForAdd} onConfirm={onConfirm} onCancel={onCancel}/>
+                </>
+            )
+        }
+    }
+
     useEffect(() => {
         fetchSongsFromPlaylist()
         getMusicsForAdd()
     }, [])
+
     useEffect(() => {
         getDetailMusic()
     }, [idSongs])
-    const onConfirm = (music) => {
-        addMusicForPLaylist(pathParams.playlist, music)
-    }
-    if (!loading) {
-        return (
-            <>
-                <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
-                {
-                    detailSongs.map((elemento) => {
-                        return (
-                            <Container>
-                                <Stack key={elemento.id} >
-                                    <Grid item xs={6}>
-                                        <div>{elemento.title}</div>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <div>{elemento.artist}</div>
-                                    </Grid>
-                                </Stack>
-                            </Container>
 
-                        )
-                    })
-                }
-                <AddMusicByPlaylist musicsForAdd={musicsForAdd} onConfirm={onConfirm} />
-                <AddCircle></AddCircle>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
-                <Loading />
-                <AddCircle></AddCircle>
-            </>
-        )
+    useEffect(() => {
+        popup()
+    }, [visible]);
+
+        if (!loading) {
+            return (
+                <>
+                    <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
+                    <MusicContainer>
+                        <MusicName> - </MusicName>
+                        <MusicName>
+                            Nome
+                        </MusicName>
+                        <MusicName>
+                            Artista
+                        </MusicName>
+                    </MusicContainer>
+                    {
+                        detailSongs.map((elemento, index) => {
+                            return (
+                                <MusicContainer key={elemento.id + index}>
+                                    <PlayCircleIcon />
+                                    <MusicName>
+                                        {elemento.title}
+                                    </MusicName>
+                                    <MusicArtist>
+                                        {elemento.artist}
+                                    </MusicArtist>
+                                </MusicContainer>
+
+                            )
+                        })
+                    }
+                    <AddCircle onClick={() => { setVisible(true) }}></AddCircle>
+                    {
+                        popup()
+                    }
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
+                    <Loading />
+                    <AddCircle onClick={() => { setVisible(true) }}></AddCircle>
+                    {
+                        popup()
+                    }
+                </>
+            )
+        }
     }
-}

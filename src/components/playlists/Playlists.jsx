@@ -7,11 +7,15 @@ import { goToAddPlaylist, goToDetailPage } from '../../routes/Coordinator';
 import logo from "../../assets/logoHeader.png";
 import * as Style from './Style'
 import { getTokenData } from '../../services/getTokenData';
+import { useProtectedPage } from '../../hooks/useProtectedPage';
 
 export const Playlists = () => {
     const [playlists, setPlaylists] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
+
+    useProtectedPage()
+    
     useEffect(() => {
         getTokenData(localStorage.getItem('token'))
         fetchPlaylists();

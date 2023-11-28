@@ -3,9 +3,13 @@ import * as Style from "./Style"
 import logo from "../../assets/logoHeader.png"
 import { goBack, goToDetailPage } from "../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
 export const AddMusic = () => {
     const navigate = useNavigate()
+
+    useProtectedPage()
+
     const backFeed = ()=>{
         goBack(navigate)
     }

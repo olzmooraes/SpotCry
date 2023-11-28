@@ -6,21 +6,23 @@ import logo from '../../assets/logoHeader.png'
 import { AddCircleOutline } from '@mui/icons-material';
 import { goToAddMusic } from '../../routes/Coordinator'
 import { useNavigate } from 'react-router-dom'
+import { useProtectedPage } from '../../hooks/useProtectedPage'
 
 export const Musics = () => {
   const [musics, setMusics] = useState([])
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
+  useProtectedPage()
+
   const getMusics = async () => {
     try {
+      setLoading(true)
       const response = await getMusicsFromUser();
-      console.log(response);
       setMusics(response.data.songs);
       setLoading(false)
     } catch (error) {
       console.error("Erro ao buscar musics:", error);
-      setLoading(false)
     }
   }
   useEffect(() => {

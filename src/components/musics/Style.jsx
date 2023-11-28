@@ -119,3 +119,74 @@ export const BackButtonAddMusic = styled(ButtonAddMusic)`
   top: 10px;
   left: 10px;
 `;
+
+// CODIGO DO POP-UP DE ADICIONAR AS MUSICAS
+
+export const PopupContainer = styled.div`
+position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+`;
+
+export const PopupContent = styled.div`
+background-color: white;
+padding: 20px;
+border: 1px solid black;
+width: 500px;
+height: auto;
+
+`;
+
+export const PopupTitle = styled.h2`
+  color: ${COLORS.darkGray}
+  font-size: 16px;
+`;
+
+export const PopupList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-Height: 500px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width:5px;
+    
+}
+&::-webkit-scrollbar-thumb {
+background-color: ${COLORS.darkGray};
+border-radius: 5px;
+}
+`;
+
+export const PopupListItem = styled.li`
+padding: 10px;
+border-bottom: 1px solid #ccc;
+cursor: pointer;
+
+&:hover {
+  background-color: #eee;
+}
+`;
+
+export const PopupButton = styled.button`
+padding: 10px;
+border: none;
+background-color: #007bff;
+color: white;
+cursor: pointer;
+`;
+
+export const HeaderPopUp = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 20px 0;
+  font-size: 1rem;
+`;
