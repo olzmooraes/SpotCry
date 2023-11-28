@@ -4,5 +4,6 @@ export const COLORS = {
     indigo: "#4B0082",
     white: "#FCFCFC",
     darkYellow: "#F0D500",
+    gray: '#f0f0f0',
   };
   

@@ -3,45 +3,19 @@ import * as Style from "./Style"
 import { useNavigate } from "react-router-dom";
 import { goToAddMusicByPlaylist, goToFeed } from "../../routes/Coordinator";
 import { Loading } from "../loading/Loading";
-import { AddCircle, AddCircleOutline } from '@mui/icons-material';
+import { AddCircle, AddCircleOutline, Troubleshoot } from '@mui/icons-material';
 import { useParams } from "react-router-dom"
 import { getMusicFromPlaylist } from "../../services/musicFromPlaylist";
 import { getMusicsFromId } from "../../services/musicsFromId";
-import { Stack, Container, Box, Paper, Grid } from "@mui/material";
 import { getPlaylistById } from "../../services/playlistById";
 import { AddMusicByPlaylist } from "../musics/AddMusicsByPlaylist";
 import { addMusicForPLaylist } from "../../services/addMusicForPlaylist";
 import { getMusicsFromUser } from "../../services/musics";
-import styled from 'styled-components';
 import logo from '../../assets/logoHeader.png';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
-const MusicContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  align-items: center;
-  justify-items: center;
-  margin-bottom: 10px;
-`;
-
-const MusicImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-`;
-
-const MusicInfo = styled.div`
-  margin-left: 10px;
-`;
-
-const MusicName = styled.span`
-  font-weight: bold;
-`;
-
-const MusicArtist = styled.span`
-  font-size: 12px;
-`;
-export const DetailPlaylist = (props) => {
+export const DetailPlaylist = () => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
     const pathParams = useParams()
@@ -50,32 +24,34 @@ export const DetailPlaylist = (props) => {
     const [musicsForAdd, setMusicsForAdd] = useState({})
     const [visible, setVisible] = useState(false)
 
+    useProtectedPage()
+
     const fetchSongsFromPlaylist = async () => {
         try {
-            setLoading(true)
             const musicsFromPlaylist = await getMusicFromPlaylist(pathParams.playlist);
             setSongs(musicsFromPlaylist.data.songs);
+            setLoading(false)
         } catch (e) {
             console.error("Erro ao buscar Musicas:", e);
         }
     }
     const fetchPlaylistId = async () => {
         try {
+            setLoading(true)
             const playlist = await getPlaylistById(pathParams.playlist)
+            setLoading(false)
         } catch (e) {
 
         }
     }
     const getMusicsForAdd = async () => {
-        setLoading(true);
         const musics = await getMusicsFromUser()
         //const musicsFiltred = musics.data.songs.filter(elemento => elemento.id !== detailSongs.id)
         setMusicsForAdd(musics.data.songs)
-        setLoading(false);
+        setLoading(false)
     }
     const getDetailMusic = async () => {
         try {
-            setLoading(true);
             const songOld = []
             for (const id of idSongs) {
                 songOld.push(getMusicsFromId(id))
@@ -97,22 +73,15 @@ export const DetailPlaylist = (props) => {
     const onCancel = () => {
         setVisible(false)
     }
-    const popup = () => {
-        if (visible) {
-            return (
-                <>
-                    <AddMusicByPlaylist musics={musicsForAdd} onConfirm={onConfirm} onCancel={onCancel}/>
-                </>
-            )
-        }
-    }
 
     useEffect(() => {
+        setLoading(true)
         fetchSongsFromPlaylist()
         getMusicsForAdd()
     }, [])
 
     useEffect(() => {
+        setLoading(true)
         getDetailMusic()
     }, [idSongs])
 
@@ -120,51 +89,68 @@ export const DetailPlaylist = (props) => {
         popup()
     }, [visible]);
 
-        if (!loading) {
+    const popup = () => {
+        if (visible) {
             return (
                 <>
-                    <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
-                    <MusicContainer>
-                        <MusicName> - </MusicName>
-                        <MusicName>
-                            Nome
-                        </MusicName>
-                        <MusicName>
-                            Artista
-                        </MusicName>
-                    </MusicContainer>
-                    {
-                        detailSongs.map((elemento, index) => {
-                            return (
-                                <MusicContainer key={elemento.id + index}>
-                                    <PlayCircleIcon />
-                                    <MusicName>
-                                        {elemento.title}
-                                    </MusicName>
-                                    <MusicArtist>
-                                        {elemento.artist}
-                                    </MusicArtist>
-                                </MusicContainer>
-
-                            )
-                        })
-                    }
-                    <AddCircle onClick={() => { setVisible(true) }}></AddCircle>
-                    {
-                        popup()
-                    }
-                </>
-            )
-        } else {
-            return (
-                <>
-                    <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
-                    <Loading />
-                    <AddCircle onClick={() => { setVisible(true) }}></AddCircle>
-                    {
-                        popup()
-                    }
+                    <AddMusicByPlaylist musics={musicsForAdd} onConfirm={onConfirm} onCancel={onCancel} />
                 </>
             )
         }
     }
+    return (
+        <>
+            <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
+            <Style.Header>
+                <Style.PlaylistImage src={logo} alt='logoPlaylist' />
+                <Style.DivContent>
+                    <Style.PlaylistName>Minha PLaylist</Style.PlaylistName>
+                    <Style.ArtistSubtitle>artista</Style.ArtistSubtitle>
+                </Style.DivContent>
+            </Style.Header>
+            <Style.MusicContainer>
+                <Style.MusicName> - </Style.MusicName>
+                <Style.MusicName>
+                    Nome
+                </Style.MusicName>
+                <Style.MusicName>
+                    Artista
+                </Style.MusicName>
+            </Style.MusicContainer>
+            {!loading &&
+                detailSongs.map((elemento, index) => {
+                    return (
+                        <Style.MusicContainer key={elemento.id + index}>
+                            <PlayCircleIcon />
+                            <Style.MusicName>
+                                {elemento.title}
+                            </Style.MusicName>
+                            <Style.MusicArtist>
+                                {elemento.artist}
+                            </Style.MusicArtist>
+                        </Style.MusicContainer>
+
+                    )
+                }) || (
+                    <Loading />
+                )
+            }
+            <AddCircle onClick={() => { setVisible(true) }}></AddCircle>
+            {
+                popup()
+            }
+        </>
+    )
+}
+    // } else {
+    //     return (
+    //         <>
+    //             <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
+    //             <Loading />
+    //             <AddCircle onClick={() => { setVisible(true) }}></AddCircle>
+    //             {
+    //                 popup()
+    //             }
+    //         </>
+    //     )
+    // }

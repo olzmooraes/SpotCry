@@ -7,32 +7,37 @@ export const Title = styled.h1`
 `
 
 export const CardMusic = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 16px;
-
+display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  max-Height: 500px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width:5px;
+  }
+  &::-webkit-scrollbar-thumb {
+  background-color: ${COLORS.darkGray};
+  border-radius: 5px;
+  }
 `
 export const CardContainer = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   padding: 8px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
   border-radius: 5px;
-  border: 1px solid black;  
-`;
-
-export const CardImage = styled.img`
-    width: 100%;
+  border-top: 2px solid ${COLORS.gray}; 
+  justify-content: space-around;
 `;
 
 export const CardInfo = styled.div`
   margin-top: 8px;
   text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 export const CardTitle = styled.h2`
@@ -49,6 +54,13 @@ export const CardDescription = styled.p`
   margin: 4px 0;
 `;
 
+export const CardAdd = styled.div`
+  margin-top: 8px;
+  text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
 
 // COMECA OS STYLED COMPONENTS DO COMPONENTE DE ADICIONAR PLAYLIST
 
@@ -157,30 +169,29 @@ export const PopupList = styled.ul`
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width:5px;
-    
-}
-&::-webkit-scrollbar-thumb {
-background-color: ${COLORS.darkGray};
-border-radius: 5px;
-}
+  }
+  &::-webkit-scrollbar-thumb {
+  background-color: ${COLORS.darkGray};
+  border-radius: 5px;
+  }
 `;
 
 export const PopupListItem = styled.li`
-padding: 10px;
-border-bottom: 1px solid #ccc;
-cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
 
-&:hover {
-  background-color: #eee;
-}
+  &:hover {
+    background-color: #eee;
+  }
 `;
 
 export const PopupButton = styled.button`
-padding: 10px;
-border: none;
-background-color: #007bff;
-color: white;
-cursor: pointer;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
 `;
 
 export const HeaderPopUp = styled.div`

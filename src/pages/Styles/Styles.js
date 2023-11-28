@@ -19,7 +19,7 @@ export const FeedContainer = styled.div`
   display:flex;
   justify-content: center;
   alling-items: center;
-  margin: 0 10rem;
+  margin: 0 20rem;
   height: 100%;
   flex-direction: column;
 `

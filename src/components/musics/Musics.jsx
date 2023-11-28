@@ -4,9 +4,11 @@ import { Loading } from '../loading/Loading'
 import * as Style from './Style'
 import logo from '../../assets/logoHeader.png'
 import { AddCircleOutline } from '@mui/icons-material';
+import AddIcon from '@mui/icons-material/Add';
 import { goToAddMusic } from '../../routes/Coordinator'
 import { useNavigate } from 'react-router-dom'
 import { useProtectedPage } from '../../hooks/useProtectedPage'
+import { ThumbNail } from '../ThumbNail/ThumbNail'
 
 export const Musics = () => {
   const [musics, setMusics] = useState([])
@@ -34,25 +36,28 @@ export const Musics = () => {
   if (!loading) {
     return (
       <div>
-        <Style.Title>Songs <AddCircleOutline onClick={addmusic}/> </Style.Title>
+        <Style.Title>Songs <AddCircleOutline onClick={addmusic} /> </Style.Title>
         <Style.CardMusic>
-            {Array.isArray(musics) &&
-              musics.map((musics, index) => (
-                <Style.CardContainer key={musics.id}>
-                  <Style.CardImage src={logo} alt="logo" />
-                  <Style.CardInfo>
-                    <Style.CardTitle>{musics.title}</Style.CardTitle>
-                    <Style.CardDescription>{musics.artist}</Style.CardDescription>
-                  </Style.CardInfo>
-                </Style.CardContainer>
-              ))}
+          {Array.isArray(musics) &&
+            musics.map((musics, index) => (
+              <Style.CardContainer key={musics.id}>
+                <ThumbNail url={musics.url} name={musics.name}/>
+                <Style.CardInfo>
+                  <Style.CardTitle>{musics.title}</Style.CardTitle>
+                  <Style.CardDescription>{musics.artist}</Style.CardDescription>
+                </Style.CardInfo>
+                <Style.CardAdd>
+                  <AddIcon />
+                </Style.CardAdd>
+              </Style.CardContainer>
+            ))}
         </Style.CardMusic>
       </div>
     )
   } else {
     return (
       <>
-        <Style.Title>Songs <AddCircleOutline key={"circleAddMusic"}/> </Style.Title>
+        <Style.Title>Songs <AddCircleOutline key={"circleAddMusic"} /> </Style.Title>
         <Loading />
       </>
     )

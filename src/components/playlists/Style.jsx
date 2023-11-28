@@ -2,9 +2,23 @@ import Styled from 'styled-components'
 import {COLORS } from "../../constants/colors"
 
 export const CardPlaylist = Styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 16px;
+display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(100px, 1fr); 
+  gap: 16px;
+  padding-bottom: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Adiciona um desempenho suave de rolagem em dispositivos iOS */
+
+  scrollbar-color: ${COLORS.darkGray} transparent; 
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${COLORS.darkGray};
+    border-radius: 5px;
+  }
 
 `
 export const Title = Styled.h1`
@@ -25,13 +39,13 @@ export const CardContainer = Styled.div`
   border: 1px solid black;  
 `;
 
-export const CardImage = Styled.img`
-    width: 100%;
-`;
-
 export const CardInfo = Styled.div`
   margin-top: 8px;
   text-align: center;
+`;
+
+export const CardImage = Styled.img`
+    width: 70px
 `;
 
 export const CardTitle = Styled.h2`
