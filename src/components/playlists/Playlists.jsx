@@ -15,7 +15,7 @@ export const Playlists = () => {
     const navigate = useNavigate()
 
     useProtectedPage()
-    
+
     useEffect(() => {
         getTokenData(localStorage.getItem('token'))
         fetchPlaylists();
@@ -36,12 +36,12 @@ export const Playlists = () => {
     if (!loading) {
         return (
             <div>
-                <Style.Title>Playlists <AddCircleOutline onClick={addPlaylist}/></Style.Title>
+                <Style.Title>Playlists <AddCircleOutline onClick={addPlaylist} /></Style.Title>
                 <Style.CardPlaylist>
                     {Array.isArray(playlists) &&
                         playlists.map((playlist, index) => (
-                            <Style.CardContainer onClick={()=>{goToDetailPage(navigate, playlist._id)}} key={playlist._id}>
-                                <Style.CardImage src={logo} alt="logo" />
+                            <Style.CardContainer onClick={() => { goToDetailPage(navigate, playlist._id) }} key={playlist._id}>
+                                <Style.CardImage src={logo} alt="imagemPlaylist" />
                                 <Style.CardInfo>
                                     <Style.CardTitle>{playlist._name}</Style.CardTitle>
                                     <Style.CardDescription>{playlist._description}</Style.CardDescription>
@@ -54,7 +54,7 @@ export const Playlists = () => {
     } else {
         return (
             <>
-                <Style.Title>Playlists <AddCircleOutline onClick={addPlaylist}/></Style.Title>
+                <Style.Title>Playlists <AddCircleOutline onClick={addPlaylist} /></Style.Title>
                 <Loading />
             </>
         )
