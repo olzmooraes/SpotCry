@@ -1,13 +1,24 @@
-import { useThumbnail } from "../../hooks/useThumbnail";
-import { useState } from "react";
+import { useEffect, useState, React } from "react";
 import * as Style from "./Style"
 
 export const ThumbNail = (props)=>{
-    const [thumbNail, setThumbNail] = useState()
-    setThumbNail(useThumbnail(props.url))
+    const [thumbnail, setThumbnail] = useState(true)
+
+    const urlTrated = ()=>{
+        const url = props.url
+        const urlSplit = url.split('?v=')
+            const id = urlSplit[1]?.split("&")[0]
+            setThumbnail(id)
+        }
+    useEffect(()=>{
+        urlTrated()
+    },[])
+    useEffect(()=>{
+    }, [thumbnail])
+
     return(
         <>
-            <Style.CardImage src={thumbNail} alt={props.name}/>
+                <Style.CardImage src={`https://img.youtube.com/vi/${thumbnail}/mqdefault.jpg`} alt={props.name}/>
         </>
     )
 }

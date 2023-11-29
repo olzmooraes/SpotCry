@@ -15,9 +15,10 @@ const Router = () => (
     <Route path="/login" element={<LoginPage />} />
     <Route path="/addplaylist" element={<AddPlaylist />} />
     <Route path="/addsongs" element={<AddMusic />} />
-    <Route path="/addsongsbyplaylist" element={<AddMusicByPlaylist />} />
+    {/* <Route path="/addsongsbyplaylist" element={<AddMusicByPlaylist />} /> */}
     <Route path="/feed" element={<FeedPage />} />
     <Route path="/DetailPlaylist/:playlist" element={<DetailPlaylist/>} />
+    <Route path="/DetailPlaylist/:playlist/addMusics" element={<AddMusicByPlaylist/>} />
   </Routes>
 );
 

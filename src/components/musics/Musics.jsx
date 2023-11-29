@@ -41,7 +41,7 @@ export const Musics = () => {
           {Array.isArray(musics) &&
             musics.map((musics, index) => (
               <Style.CardContainer key={musics.id}>
-                <ThumbNail url={musics.url} name={musics.name}/>
+                <ThumbNail url={musics.url} name={musics.title}/>
                 <Style.CardInfo>
                   <Style.CardTitle>{musics.title}</Style.CardTitle>
                   <Style.CardDescription>{musics.artist}</Style.CardDescription>

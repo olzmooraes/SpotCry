@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import { COLORS } from "../../constants/colors";
 
 export const Title = styled.h1`
-    color: ${COLORS.yellow};
+    color: ${COLORS.darkGray};
     margin: 20px 0;
 `
 
@@ -180,10 +180,15 @@ export const PopupListItem = styled.li`
   padding: 10px;
   border-bottom: 1px solid #ccc;
   cursor: pointer;
-
   &:hover {
     background-color: #eee;
   }
+`;
+export const PopupListItemActived = styled.li`
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+    background-color: #eee;
 `;
 
 export const PopupButton = styled.button`

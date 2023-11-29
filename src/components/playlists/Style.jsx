@@ -22,7 +22,7 @@ display: grid;
 
 `
 export const Title = Styled.h1`
-    color: ${COLORS.yellow};
+    color: ${COLORS.darkGray};
     margin: 20px 0;
 `
 export const CardContainer = Styled.div`

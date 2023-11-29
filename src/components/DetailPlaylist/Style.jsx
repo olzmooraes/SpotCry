@@ -31,9 +31,27 @@ height: 100vh;
 export const MusicContainer = Styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
+  gap: 10rem;
   align-items: center;
-  justify-items: center;
-  margin: 1rem 0;
+  padding: 0 0 0 15vw;
+  cursor: pointer;
+  margin: 0 20rem;
+  border: 1px solid ${COLORS.gray};
+  &:hover{
+    background-color: ${COLORS.yellow}
+  }
+  img {
+    margin: 1rem;
+    width: 40%;
+    height: auto;
+  }
+`;
+export const Main = Styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
 `;
 
 export const MusicImage = Styled.img`

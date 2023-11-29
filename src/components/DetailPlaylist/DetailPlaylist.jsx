@@ -7,13 +7,13 @@ import { AddCircle, AddCircleOutline, Troubleshoot } from '@mui/icons-material';
 import { useParams } from "react-router-dom"
 import { getMusicFromPlaylist } from "../../services/musicFromPlaylist";
 import { getMusicsFromId } from "../../services/musicsFromId";
-import { getPlaylistById } from "../../services/playlistById";
+import { getPlaylistById } from "../../services/getPlaylistById";
 import { AddMusicByPlaylist } from "../musics/AddMusicsByPlaylist";
-import { addMusicForPLaylist } from "../../services/addMusicForPlaylist";
 import { getMusicsFromUser } from "../../services/musics";
 import logo from '../../assets/logoHeader.png';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { useProtectedPage } from "../../hooks/useProtectedPage";
+import { ThumbNail } from "../ThumbNail/ThumbNail";
+import { getTokenData } from "../../services/getTokenData";
 
 export const DetailPlaylist = () => {
     const [loading, setLoading] = useState(true);
@@ -23,32 +23,30 @@ export const DetailPlaylist = () => {
     const [detailSongs, setDetailSongs] = useState([])
     const [musicsForAdd, setMusicsForAdd] = useState({})
     const [visible, setVisible] = useState(false)
+    const userId = getTokenData(localStorage.getItem("token")).id
+    const [authenticated, setAuthenticated] = useState(false)
 
     useProtectedPage()
 
     const fetchSongsFromPlaylist = async () => {
+        
         try {
             const musicsFromPlaylist = await getMusicFromPlaylist(pathParams.playlist);
             setSongs(musicsFromPlaylist.data.songs);
-            setLoading(false)
         } catch (e) {
             console.error("Erro ao buscar Musicas:", e);
         }
     }
     const fetchPlaylistId = async () => {
         try {
-            setLoading(true)
             const playlist = await getPlaylistById(pathParams.playlist)
-            setLoading(false)
         } catch (e) {
 
         }
     }
     const getMusicsForAdd = async () => {
         const musics = await getMusicsFromUser()
-        //const musicsFiltred = musics.data.songs.filter(elemento => elemento.id !== detailSongs.id)
         setMusicsForAdd(musics.data.songs)
-        setLoading(false)
     }
     const getDetailMusic = async () => {
         try {
@@ -67,14 +65,12 @@ export const DetailPlaylist = () => {
     const feed = () => {
         goToFeed(navigate)
     }
-    const onConfirm = (music) => {
-        addMusicForPLaylist(pathParams.playlist, music)
-    }
     const onCancel = () => {
         setVisible(false)
     }
 
     useEffect(() => {
+        if(userId === pathParams.playlist._userId) { setAuthenticated(true)} else { setAuthenticated(false)}
         setLoading(true)
         fetchSongsFromPlaylist()
         getMusicsForAdd()
@@ -85,21 +81,11 @@ export const DetailPlaylist = () => {
         getDetailMusic()
     }, [idSongs])
 
-    useEffect(() => {
-        popup()
-    }, [visible]);
-
-    const popup = () => {
-        if (visible) {
-            return (
-                <>
-                    <AddMusicByPlaylist musics={musicsForAdd} onConfirm={onConfirm} onCancel={onCancel} />
-                </>
-            )
-        }
-    }
     return (
         <>
+            {
+                useProtectedPage()
+            }
             <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
             <Style.Header>
                 <Style.PlaylistImage src={logo} alt='logoPlaylist' />
@@ -108,49 +94,28 @@ export const DetailPlaylist = () => {
                     <Style.ArtistSubtitle>artista</Style.ArtistSubtitle>
                 </Style.DivContent>
             </Style.Header>
-            <Style.MusicContainer>
-                <Style.MusicName> - </Style.MusicName>
-                <Style.MusicName>
-                    Nome
-                </Style.MusicName>
-                <Style.MusicName>
-                    Artista
-                </Style.MusicName>
-            </Style.MusicContainer>
-            {!loading &&
-                detailSongs.map((elemento, index) => {
-                    return (
-                        <Style.MusicContainer key={elemento.id + index}>
-                            <PlayCircleIcon />
-                            <Style.MusicName>
-                                {elemento.title}
-                            </Style.MusicName>
-                            <Style.MusicArtist>
-                                {elemento.artist}
-                            </Style.MusicArtist>
-                        </Style.MusicContainer>
+            <Style.Main>
+                {authenticated && (<AddCircle onClick={() => { goToAddMusicByPlaylist(navigate, pathParams.playlist)}}></AddCircle>)}
+                <AddCircle onClick={() => { goToAddMusicByPlaylist(navigate, pathParams.playlist)}}></AddCircle>
+                {!loading &&
+                    detailSongs.map((elemento, index) => {
+                        return (
+                            <Style.MusicContainer key={elemento.id + index}>
+                                <ThumbNail url={elemento.url} name={elemento.titile} />
+                                <Style.MusicName>
+                                    {elemento.title}
+                                </Style.MusicName>
+                                <Style.MusicArtist>
+                                    {elemento.artist}
+                                </Style.MusicArtist>
+                            </Style.MusicContainer>
 
+                        )
+                    }) || (
+                        <Loading />
                     )
-                }) || (
-                    <Loading />
-                )
-            }
-            <AddCircle onClick={() => { setVisible(true) }}></AddCircle>
-            {
-                popup()
-            }
+                }
+            </Style.Main>
         </>
     )
 }
-    // } else {
-    //     return (
-    //         <>
-    //             <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
-    //             <Loading />
-    //             <AddCircle onClick={() => { setVisible(true) }}></AddCircle>
-    //             {
-    //                 popup()
-    //             }
-    //         </>
-    //     )
-    // }

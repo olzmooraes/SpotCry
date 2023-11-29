@@ -29,7 +29,7 @@ export const LoginTitle = styled.h1`
 export const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
   margin: 0 auto;
 `;

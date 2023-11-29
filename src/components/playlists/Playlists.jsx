@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { getPlaylistsFromUser } from '../../services/playlist'
+import { getPlaylistsFromUser } from '../../services/getPlaylist'
 import { Loading } from '../loading/Loading';
 import { AddCircle, AddCircleOutline } from '@mui/icons-material';
 import { useNavigate } from "react-router-dom";

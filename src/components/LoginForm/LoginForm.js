@@ -21,35 +21,33 @@ export const LoginForm = () => {
 
   const onSubmitLogin = (event) => {
     event.preventDefault();
-    localStorage.setItem("loading", true)
     setLoading(true)
     login(form, navigate);
   };
-  if (loading) {
-      return (
-        <>
-          <Loading />
-        </>
-      )
-    } else {
-      return (
-        <FormContainer>
-          <LogoWithText>
-            <img src={logoLogin} alt="logo" />
-          </LogoWithText>
-          <StyledForm>
-            <LoginTitle>Sinta a música, viva a emoção</LoginTitle>
-            <div>
-              <SimpleText text="Email:" />
-              <StyledInput type="email" name="email" onChange={onChange} required={true} value={form.email} />
-            </div>
-            <div>
-              <SimpleText text="Senha:" />
-              <StyledInput type="password" name="password" onChange={onChange} required={true} value={form.password} />
-            </div>
-            <StyledButton type={"submit"} value={"Entrar"} onClick={onSubmitLogin} />
-          </StyledForm>
-        </FormContainer>
-      );
-    }
-  }
+
+  return (
+    <FormContainer>
+      <LogoWithText>
+        <img src={logoLogin} alt="logo" />
+      </LogoWithText>
+      <StyledForm>
+        <LoginTitle>Sinta a música, viva a emoção</LoginTitle>
+        {
+          !loading && (
+            <>
+              <div>
+                <SimpleText text="Email:" />
+                <StyledInput type="email" name="email" onChange={onChange} required={true} value={form.email} />
+              </div>
+              <div>
+                <SimpleText text="Senha:" />
+                <StyledInput type="password" name="password" onChange={onChange} required={true} value={form.password} />
+              </div>
+              <StyledButton type={"submit"} value={"Entrar"} onClick={onSubmitLogin} />
+            </>
+          ) || <Loading />
+        }
+      </StyledForm>
+    </FormContainer>
+  );
+}
