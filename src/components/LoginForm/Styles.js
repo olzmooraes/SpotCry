@@ -14,14 +14,16 @@ export const LogoWithText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50vw;
+  > *{
+    width: 50%;
+  }
 `;
 
 export const LoginTitle = styled.h1`
   font-family: "Playfair Display";
   font-weight: 400;
   font-size: 40px;
-  color: ${COLORS.indigo};
+  color: ${COLORS.purple};
   margin-top: 1rem;
   margin-bottom: 3rem;
 `;
@@ -37,7 +39,7 @@ export const StyledForm = styled.div`
 export const StyledInput = styled.input`
   width: 30vw;
   height: 3rem;
-  border: 2px solid ${COLORS.indigo};
+  border: 2px solid ${COLORS.purple};
   border-radius: 10px;
   padding-left: 1rem;
   margin-bottom: 1rem;
@@ -48,7 +50,7 @@ export const StyledButton = styled.input`
   height: 3rem;
   border: none;
   border-radius: 10px;
-  background-color: ${COLORS.yellow};
+  background-color: ${COLORS.iceblue};
   color: ${COLORS.white};
   font-size: 20px;
   font-family: "Roboto";
@@ -58,7 +60,7 @@ export const StyledButton = styled.input`
   cursor: pointer;
   &:hover {
     background-color: ${COLORS.white};
-    color: ${COLORS.yellow};
-    border: 2px solid ${COLORS.yellow};
+    color: ${COLORS.iceblue};
+    border: 2px solid ${COLORS.iceblue};
   }
 `;

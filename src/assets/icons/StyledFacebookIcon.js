@@ -19,7 +19,7 @@ const StyledFacebookIcon = styled(FacebookIcon)`
   cursor: pointer;
 
   &:hover {
-    fill: ${COLORS.indigo};
+    fill: ${COLORS.purple};
   }
 `;
 

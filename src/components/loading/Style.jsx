@@ -6,9 +6,9 @@ export const Loading = styled.div`
     align-items: center;
     justify-content: center;
     & > *{
-        color: ${COLORS.yellow} !important;
-        background-color: ${COLORS.yellow};
-        border: 5px solid ${COLORS.darkGray};
+        color: ${COLORS.vinho} !important;
+        background-color: ${COLORS.vinho};
+        border: 5px solid ${COLORS.bege};
         box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     }
 `

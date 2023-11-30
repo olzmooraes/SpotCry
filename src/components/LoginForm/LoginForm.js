@@ -6,7 +6,7 @@ import {
   StyledInput,
   StyledButton,
 } from "./Styles";
-import logoLogin from "../../assets/logoLogin.png";
+import logoLogin from "../../assets/logoHeader.png";
 import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import SimpleText from "../SimpleText/SimpleText";

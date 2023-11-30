@@ -4,7 +4,7 @@ import { COLORS } from "../../constants/colors";
 
 const Text = styled.p`
   font-size: 28px;
-  color: ${COLORS.indigo};
+  color: ${COLORS.purple};
 `;
 
 const SimpleText = ({ text }) => {

@@ -3,7 +3,7 @@ import * as Style from "./Style"
 import { useNavigate } from "react-router-dom";
 import { goToAddMusicByPlaylist, goToFeed } from "../../routes/Coordinator";
 import { Loading } from "../loading/Loading";
-import { AddCircle, AddCircleOutline, Troubleshoot } from '@mui/icons-material';
+import { AddCircle, AddCircleOutline, ConnectingAirportsOutlined, Troubleshoot } from '@mui/icons-material';
 import { useParams } from "react-router-dom"
 import { getMusicFromPlaylist } from "../../services/musicFromPlaylist";
 import { getMusicsFromId } from "../../services/musicsFromId";
@@ -14,22 +14,24 @@ import logo from '../../assets/logoHeader.png';
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { ThumbNail } from "../ThumbNail/ThumbNail";
 import { getTokenData } from "../../services/getTokenData";
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 export const DetailPlaylist = () => {
     const [loading, setLoading] = useState(true);
+    const [loadingDetailPLaylist, setLoadingDetailPLaylist] = useState(true);
     const navigate = useNavigate()
     const pathParams = useParams()
     const [idSongs, setSongs] = useState([])
     const [detailSongs, setDetailSongs] = useState([])
     const [musicsForAdd, setMusicsForAdd] = useState({})
-    const [visible, setVisible] = useState(false)
-    const userId = getTokenData(localStorage.getItem("token")).id
+    const [userId, setUserId] = useState(getTokenData(localStorage.getItem("token")).id)
     const [authenticated, setAuthenticated] = useState(false)
+    const [detailPlaylist, setDetailPlaylist] = useState()
 
     useProtectedPage()
 
     const fetchSongsFromPlaylist = async () => {
-        
+
         try {
             const musicsFromPlaylist = await getMusicFromPlaylist(pathParams.playlist);
             setSongs(musicsFromPlaylist.data.songs);
@@ -39,9 +41,13 @@ export const DetailPlaylist = () => {
     }
     const fetchPlaylistId = async () => {
         try {
-            const playlist = await getPlaylistById(pathParams.playlist)
-        } catch (e) {
 
+            setLoadingDetailPLaylist(true)
+            const playlist = await getPlaylistById(pathParams.playlist)
+            setDetailPlaylist(playlist.data.playlist)
+            setLoadingDetailPLaylist(false)
+        } catch (e) {
+            console.log("Erro ao buscar detalhes da playlist", e)
         }
     }
     const getMusicsForAdd = async () => {
@@ -55,6 +61,7 @@ export const DetailPlaylist = () => {
                 songOld.push(getMusicsFromId(id))
             }
             const result = await Promise.all(songOld)
+
             const dataResult = result.map((res) => res.data.song)
             setDetailSongs(dataResult)
             setLoading(false)
@@ -70,7 +77,7 @@ export const DetailPlaylist = () => {
     }
 
     useEffect(() => {
-        if(userId === pathParams.playlist._userId) { setAuthenticated(true)} else { setAuthenticated(false)}
+        fetchPlaylistId()
         setLoading(true)
         fetchSongsFromPlaylist()
         getMusicsForAdd()
@@ -78,9 +85,20 @@ export const DetailPlaylist = () => {
 
     useEffect(() => {
         setLoading(true)
-        getDetailMusic()
+        if (idSongs) {
+            getDetailMusic()
+        }
     }, [idSongs])
 
+    useEffect(() => {
+        if(detailPlaylist != undefined){
+            if (userId == detailPlaylist._userId) { 
+                setAuthenticated(true) 
+            }else { 
+                setAuthenticated(false) 
+            }
+        }
+    }, [detailPlaylist])
     return (
         <>
             {
@@ -90,31 +108,35 @@ export const DetailPlaylist = () => {
             <Style.Header>
                 <Style.PlaylistImage src={logo} alt='logoPlaylist' />
                 <Style.DivContent>
-                    <Style.PlaylistName>Minha PLaylist</Style.PlaylistName>
-                    <Style.ArtistSubtitle>artista</Style.ArtistSubtitle>
+                    {
+                        !loadingDetailPLaylist && (
+                            <>
+                                <Style.PlaylistName>{detailPlaylist._name} {authenticated && (<EditNoteIcon />)}</Style.PlaylistName>
+                                <Style.ArtistSubtitle>{detailPlaylist._description}</Style.ArtistSubtitle>
+                            </>)
+                        || (<Loading />)
+
+                    }
                 </Style.DivContent>
             </Style.Header>
             <Style.Main>
-                {authenticated && (<AddCircle onClick={() => { goToAddMusicByPlaylist(navigate, pathParams.playlist)}}></AddCircle>)}
-                <AddCircle onClick={() => { goToAddMusicByPlaylist(navigate, pathParams.playlist)}}></AddCircle>
+                {authenticated && (<AddCircle onClick={() => { goToAddMusicByPlaylist(navigate, pathParams.playlist) }}></AddCircle>)}
                 {!loading &&
-                    detailSongs.map((elemento, index) => {
-                        return (
-                            <Style.MusicContainer key={elemento.id + index}>
-                                <ThumbNail url={elemento.url} name={elemento.titile} />
-                                <Style.MusicName>
-                                    {elemento.title}
-                                </Style.MusicName>
-                                <Style.MusicArtist>
-                                    {elemento.artist}
-                                </Style.MusicArtist>
-                            </Style.MusicContainer>
+                            detailSongs.map((elemento, index) => {
+                                return (
+                                    <Style.MusicContainer key={elemento.id + index}>
+                                        <ThumbNail url={elemento.url} name={elemento.titile} />
+                                        <Style.MusicName>
+                                            {elemento.title}
+                                        </Style.MusicName>
+                                        <Style.MusicArtist>
+                                            {elemento.artist}
+                                        </Style.MusicArtist>
+                                    </Style.MusicContainer>
 
-                        )
-                    }) || (
-                        <Loading />
-                    )
-                }
+                                )
+                            }) || <Loading/>
+                        } 
             </Style.Main>
         </>
     )

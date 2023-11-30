@@ -18,7 +18,7 @@ const StyledTwitterIcon = styled(TwitterIcon)`
   cursor: pointer;
 
   &:hover {
-    fill: ${COLORS.indigo};
+    fill: ${COLORS.purple};
   }
 `;
 

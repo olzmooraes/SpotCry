@@ -4,7 +4,7 @@ import {COLORS } from "../../constants/colors"
 export const CardPlaylist = Styled.div`
 display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(100px, 1fr); 
+  grid-auto-columns: minmax(140px, 1fr); 
   gap: 16px;
   padding-bottom: 10px;
   overflow-x: auto;
@@ -51,7 +51,7 @@ export const CardImage = Styled.img`
 export const CardTitle = Styled.h2`
   font-family: 'Arial', sans-serif;
   font-size: 16px;
-  color: ${COLORS.darkYellow};
+  color: ${COLORS.iceblue};
   margin: 4px 0;
 `;
 
@@ -69,6 +69,7 @@ export const ContainerAddPlaylist = Styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: transparent !important;
 `;
 
 // Estilos para o formulário

@@ -4,7 +4,7 @@ import { COLORS } from "../../constants/colors";
 export const FooterContainer = styled.footer`
   display: grid;
   height: 300px;
-  background-color: ${COLORS.yellow};
+  background-color: ${COLORS.iceblue};
   grid-template-columns: 1fr 2fr 1fr;
   position: relative;
   bottom: 0;
@@ -49,7 +49,7 @@ export const FakeLink = styled.p`
   font-weight: 600;
 
   &:hover {
-    color: ${COLORS.indigo};
+    color: ${COLORS.purple};
   }
 `;
 

@@ -43,7 +43,7 @@ export const CardInfo = styled.div`
 export const CardTitle = styled.h2`
   font-family: 'Arial', sans-serif;
   font-size: 16px;
-  color: ${COLORS.darkYellow};
+  color: ${COLORS.iceblue};
   margin: 4px 0;
 `;
 

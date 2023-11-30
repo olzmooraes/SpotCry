@@ -11,14 +11,13 @@ import { AddMusicByPlaylist } from "../components/musics/AddMusicsByPlaylist";
 
 const Router = () => (
   <Routes>
-    <Route path="/" element={<HomePage />} />
-    <Route path="/login" element={<LoginPage />} />
-    <Route path="/addplaylist" element={<AddPlaylist />} />
-    <Route path="/addsongs" element={<AddMusic />} />
-    {/* <Route path="/addsongsbyplaylist" element={<AddMusicByPlaylist />} /> */}
-    <Route path="/feed" element={<FeedPage />} />
-    <Route path="/DetailPlaylist/:playlist" element={<DetailPlaylist/>} />
-    <Route path="/DetailPlaylist/:playlist/addMusics" element={<AddMusicByPlaylist/>} />
+    <Route exact path="/" element={<HomePage />} />
+    <Route exact path="/login" element={<LoginPage />} />
+    <Route exact path="/addplaylist" element={<AddPlaylist />} />
+    <Route exact path="/addsongs" element={<AddMusic />} />
+    <Route exact path="/feed" element={<FeedPage />} />
+    <Route exact path="/DetailPlaylist/:playlist" element={<DetailPlaylist/>} />
+    <Route exact path="/DetailPlaylist/:playlist/addMusics" element={<AddMusicByPlaylist/>} />
   </Routes>
 );
 

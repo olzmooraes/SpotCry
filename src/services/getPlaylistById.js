@@ -5,9 +5,9 @@ import { getTokenData } from "./getTokenData";
 
 export const getPlaylistById = (id) => {
     const token = localStorage.getItem("token")
-        return axios.get(`${BASE_URL}playlist/${id}`, {
-            headers: {
-                Authorization: token,
-            },
-        });
-};
+    return axios.get(`${BASE_URL}playlist/${id}`, {
+        headers: {
+            Authorization: token,
+        },
+    })
+}

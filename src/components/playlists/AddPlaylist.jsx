@@ -1,7 +1,7 @@
 import * as Style from "./Style";
 import { useState, useEffect } from "react"
 import logo from "../../assets/logoHeader.png"
-import { goToFeed } from "../../routes/Coordinator"
+import { goToFeed, goToDetailPage } from "../../routes/Coordinator"
 import { useNavigate } from "react-router-dom";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { v4 } from "uuid";
@@ -27,14 +27,15 @@ export const AddPlaylist = () => {
     }
     const postNewPlaylist = (name, description) => {
         setLoading(true)
+        document.querySelector(".nome").value = ''
+        document.querySelector(".descricao").value = ''
         try {
             const newPlaylist = {
                 "id": `${v4()}`,
                 "name": name,
                 "description": description
             }
-            setLoading(addPlaylist(newPlaylist));
-
+            addPlaylist(newPlaylist, navigate);
         } catch (e) {
             console.log("Erro ao adicionar playlist", e)
         }
@@ -56,8 +57,8 @@ export const AddPlaylist = () => {
                     {
                         !loading && (
                             <>
-                                <Style.InputAddPlaylist type="text" placeholder="Nome" onChange={(e) => { addName(e) }} />
-                                <Style.InputAddPlaylist type="text" placeholder="Descrição" onChange={(e) => { addDescription(e) }} />
+                                <Style.InputAddPlaylist type="text" className="nome" placeholder="Nome" onChange={(e) => { addName(e) }} />
+                                <Style.InputAddPlaylist type="text" className="descricao" placeholder="Descrição" onChange={(e) => { addDescription(e) }} />
                                 <Style.ButtonAddPlaylist onClick={() => { postNewPlaylist(name, description) }}>Concluir</Style.ButtonAddPlaylist>
                             </>
                         ) || <Loading/>

@@ -38,13 +38,14 @@ export const MusicContainer = Styled.div`
   margin: 0 20rem;
   border: 1px solid ${COLORS.gray};
   &:hover{
-    background-color: ${COLORS.yellow}
+    background-color: ${COLORS.iceblue}
   }
   img {
     margin: 1rem;
     width: 40%;
     height: auto;
   }
+  
 `;
 export const Main = Styled.div`
   display: flex;
@@ -53,6 +54,18 @@ export const Main = Styled.div`
   flex-direction: column;
   cursor: pointer;
 `;
+export const ContainerMusic = Styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width:5px;
+  }
+  &::-webkit-scrollbar-thumb {
+  background-color: ${COLORS.darkGray};
+  border-radius: 5px;
+  }
+`
 
 export const MusicImage = Styled.img`
   width: 50px;

@@ -9,6 +9,7 @@ export const useProtectedPage = () => {
         const token = Cookies.get('token')
         if(token === undefined){
             goToLoginPage(navigate)
+            return false
         }
     }, [])
 }

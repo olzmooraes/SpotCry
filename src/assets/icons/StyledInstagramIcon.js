@@ -20,7 +20,7 @@ const StyledInstagramIcon = styled(InstagramIcon)`
   cursor: pointer;
 
   &:hover {
-    fill: ${COLORS.indigo};
+    fill: ${COLORS.purple};
   }
 `;
 

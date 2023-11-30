@@ -1,9 +1,12 @@
 export const COLORS = {
-    yellow: "#F5E131",
+    iceblue: "#22bbb8",
     darkGray: "#272727",
-    indigo: "#4B0082",
+    purple: "#591045",
     white: "#FCFCFC",
-    darkYellow: "#F0D500",
+    darkBlue: "#20a2a0",
     gray: '#f0f0f0',
+    orange: '#f88c21',
+    bege: '#efc586',
+    vinho: '#8a0b10'
   };
   

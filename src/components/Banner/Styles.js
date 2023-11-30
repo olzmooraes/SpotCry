@@ -36,12 +36,12 @@ export const Button = styled.div`
   width: 200px;
   margin-left: 20px;
   border-radius: 15px;
-  background-color: ${COLORS.yellow};
+  background-color: ${COLORS.iceblue};
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
-  color: ${COLORS.indigo};
+  color: ${COLORS.purple};
   font-family: "Raleway", sans-serif;
   font-weight: 800;
   transform-origin: center center;

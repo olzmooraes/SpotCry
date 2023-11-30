@@ -18,42 +18,46 @@ export const AddMusicByPlaylist = () => {
     const [selectedMusic, setSelectedMusic] = useState([])
     const [loading, setLoading] = useState(true)
     const [musicsForAdd, setMusicsForAdd] = useState({})
+    const navigate = useNavigate()
 
     useProtectedPage()
+
     const songSelected = (id) => {
-        const idIsArray = selectedMusic.find( e => e === id );
-        if(idIsArray){
-            const newArray = selectedMusic.filter( e => e !== idIsArray );
+        const idIsArray = selectedMusic.find(e => e === id);
+        if (idIsArray) {
+            const newArray = selectedMusic.filter(e => e !== idIsArray);
             setSelectedMusic(newArray);
-        }else{
+        } else {
             const newArray = [...selectedMusic, id];
             setSelectedMusic(newArray);
         }
     }
-    const selected = (e)=>{
-        if(e){
+    const selected = (e) => {
+        if (e) {
             return true
-        }else{
+        } else {
             return false
         }
     }
     const onConfirm = async () => {
-        try{
+        try {
             const newMusicsFromPlaylist = []
             for (const id of selectedMusic) {
                 newMusicsFromPlaylist.push(addMusicForPLaylist(pathParams.playlist, id))
+                setLoading(false)
             }
             const result = await Promise.all(newMusicsFromPlaylist)
-            
-        }catch(e){
+            console.log(result)
+            setLoading(true)
+            if(result.length > 0) {
+                goToDetailPage(navigate, pathParams.playlist)
+            }
+
+        } catch (e) {
             console.log("Erro ao adicionar musicas na playlist", e)
         }
-       
+
     }
-
-
-
-
 
     const getMusicsForAdd = async () => {
         setLoading(true)
@@ -62,17 +66,20 @@ export const AddMusicByPlaylist = () => {
         setLoading(false)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getMusicsForAdd()
     }, [])
-    if(!loading){
-        return (
-            <Style.PopupContainer>
-                    <Style.PopupContent className="music-list">
-                        <Style.HeaderPopUp>
-                        <Style.PopupTitle>Lista de músicas </Style.PopupTitle>
-                        <CloseIcon onClick={()=>{goBack()}}/>
-                        </Style.HeaderPopUp>
+
+    return (
+        <Style.PopupContainer>
+            <Style.PopupContent className="music-list">
+                <Style.HeaderPopUp>
+                    <Style.PopupTitle>Lista de músicas </Style.PopupTitle>
+                    <CloseIcon onClick={() => { goToDetailPage(navigate, pathParams.playlist) }} />
+                </Style.HeaderPopUp>
+                {
+                    !loading &&
+                    (<>
                         <Style.PopupList>
                             {musicsForAdd.map((song) => (
                                 <PopUpListItem key={song.id} id={song.id} title={song.title} event={songSelected} selected={selected}>teste</PopUpListItem>
@@ -81,10 +88,9 @@ export const AddMusicByPlaylist = () => {
                         <button onClick={() => {
                             onConfirm()
                         }}>Confirmar</button>
-                    </Style.PopupContent>
-            </Style.PopupContainer>
-        );
-    }else{
-        <Loading/>
-    }
+                    </>) || <Loading />
+                }
+            </Style.PopupContent>
+        </Style.PopupContainer>
+    );
 }
