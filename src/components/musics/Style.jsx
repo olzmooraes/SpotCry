@@ -10,7 +10,7 @@ export const CardMusic = styled.div`
 display: flex;
   flex-direction: column;
   padding-bottom: 10px;
-  max-Height: 500px;
+  max-height: 500px;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width:5px;
@@ -28,7 +28,7 @@ export const CardContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   border-radius: 5px;
-  border-top: 2px solid ${COLORS.gray}; 
+  border-top: 2px solid ${COLORS.whitegray}; 
   justify-content: space-around;
 `;
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as Style from "./Style"
 import { useNavigate } from "react-router-dom";
-import { goToAddMusicByPlaylist, goToFeed } from "../../routes/Coordinator";
+import { goBack, goToAddMusicByPlaylist, goToFeed } from "../../routes/Coordinator";
 import { Loading } from "../loading/Loading";
 import { AddCircle, AddCircleOutline, ConnectingAirportsOutlined, Troubleshoot } from '@mui/icons-material';
 import { useParams } from "react-router-dom"
@@ -15,6 +15,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { ThumbNail } from "../ThumbNail/ThumbNail";
 import { getTokenData } from "../../services/getTokenData";
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import { BackButton } from "../../constants/BackButton";
 
 export const DetailPlaylist = () => {
     const [loading, setLoading] = useState(true);
@@ -69,13 +70,12 @@ export const DetailPlaylist = () => {
             console.error("Erro ao buscar Musicas:", e);
         }
     }
-    const feed = () => {
-        goToFeed(navigate)
-    }
     const onCancel = () => {
         setVisible(false)
     }
-
+    const feed = (navigation) => {
+        goToFeed(navigation)
+    }
     useEffect(() => {
         fetchPlaylistId()
         setLoading(true)
@@ -101,10 +101,7 @@ export const DetailPlaylist = () => {
     }, [detailPlaylist])
     return (
         <>
-            {
-                useProtectedPage()
-            }
-            <Style.BackButton onClick={feed}>Voltar</Style.BackButton>
+            <BackButton navigation={feed}/>
             <Style.Header>
                 <Style.PlaylistImage src={logo} alt='logoPlaylist' />
                 <Style.DivContent>

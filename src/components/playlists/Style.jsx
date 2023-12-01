@@ -7,6 +7,7 @@ display: grid;
   grid-auto-columns: minmax(140px, 1fr); 
   gap: 16px;
   padding-bottom: 10px;
+  padding-top: 20px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch; /* Adiciona um desempenho suave de rolagem em dispositivos iOS */
 
@@ -19,11 +20,13 @@ display: grid;
     background-color: ${COLORS.darkGray};
     border-radius: 5px;
   }
-
+`
+export const AllPlaylist = Styled.div`
+  heigth: 100%;
 `
 export const Title = Styled.h1`
     color: ${COLORS.darkGray};
-    margin: 20px 0;
+    margin: 30px 0 0 0;
 `
 export const CardContainer = Styled.div`
   width: 100%;
@@ -37,6 +40,10 @@ export const CardContainer = Styled.div`
   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
   border-radius: 5px;
   border: 1px solid black;  
+  &: hover {
+    background-color: ${COLORS.whitegray};
+    transform: translateY(-5px);
+  };
 `;
 
 export const CardInfo = Styled.div`

@@ -15,12 +15,6 @@ export const Button = Styled.button`
   }
 `;
 
-export const BackButton = Styled(Button)`
-
-  position: absolute;
-  top: 10px;
-  left: 10px;
-`;
 
 export const Container = Styled.div`
 display: flex;

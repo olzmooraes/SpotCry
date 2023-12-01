@@ -4,6 +4,7 @@ import { COLORS } from "../../constants/colors";
 export const HeaderLogo = styled.img`
     margin-left: 20px;
     width: 25%;
+    margin-top: 30px;
 `;
 
 export const HeaderContainer = styled.div`
@@ -43,3 +44,10 @@ export const Button = styled.div`
     background-color: ${COLORS.darkBlue};
   }
 `;
+
+export const Pesquise = styled.input`
+  border-radius: 3px;
+  tex-declaration: none;
+  width: 200%;
+  height: 50px;
+`

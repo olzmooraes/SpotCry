@@ -36,8 +36,8 @@ export const Playlists = () => {
     }
     if (!loading) {
         return (
-            <div>
-                <Style.Title>Playlists <AddCircleOutline onClick={addPlaylist} /></Style.Title>
+            <Style.AllPlaylist>
+                <Style.Title>All Playlists <AddCircleOutline onClick={addPlaylist} /></Style.Title>
                 <Style.CardPlaylist>
                     {Array.isArray(playlists) &&
                         playlists.map((playlist, index) => (
@@ -50,7 +50,7 @@ export const Playlists = () => {
                             </Style.CardContainer>
                         ))}
                 </Style.CardPlaylist>
-            </div>
+            </Style.AllPlaylist>
         )
     } else {
         return (

@@ -36,7 +36,7 @@ export const Musics = () => {
   if (!loading) {
     return (
       <div>
-        <Style.Title>Songs <AddCircleOutline onClick={addmusic} /> </Style.Title>
+        <Style.Title>All Songs <AddCircleOutline onClick={addmusic} /> </Style.Title>
         <Style.CardMusic>
           {Array.isArray(musics) &&
             musics.map((musics, index) => (

@@ -19,11 +19,11 @@ transition: background-color 0.3s ease;
   left: 10px;
 `;
 
-export const BackButton = () => {
+export const BackButton = (props) => {
     const navigate = useNavigate();
     return (
         <>
-            <Button onClick={()=>{goBack(navigate)}}>Voltar</Button>
+            <Button onClick={()=>{props.navigation(navigate)}}>Voltar</Button>
         </>
     )
 }

@@ -4,6 +4,7 @@ import {
   HeaderContainer,
   ButtonsContainer,
   Button,
+  Pesquise,
   HeaderLogo,
 } from "./Styles";
 import { goToLoginPage, goToPlaylistByUser } from "../../routes/Coordinator";
@@ -26,8 +27,9 @@ export const Header = () => {
       {
         token && (
           <ButtonsContainer>
-            <Button onClick={()=>{goToPlaylistByUser(navigate)}}>Minhas playlists</Button>
-            <Button >Minhas músicas</Button>
+            {/* <Button onClick={()=>{goToPlaylistByUser(navigate)}}>Minhas playlists</Button> 
+            <Button >Minhas músicas</Button>*/}
+            <Pesquise type="text" placeholder="Pesquise músicas, playlists, artistas" />
           </ButtonsContainer>
         ) || (
           <ButtonsContainer>

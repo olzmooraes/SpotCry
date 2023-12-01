@@ -11,6 +11,7 @@ import { PopUpListItem } from "../popUpListItem/PopUpListItem";
 import { addMusicForPLaylist } from "../../services/addMusicForPlaylist";
 import { useParams } from "react-router-dom"
 import { getMusicsFromUser } from "../../services/musics";
+import { DetailPlaylist } from "../DetailPlaylist/DetailPlaylist";
 
 
 export const AddMusicByPlaylist = () => {
@@ -49,7 +50,7 @@ export const AddMusicByPlaylist = () => {
             const result = await Promise.all(newMusicsFromPlaylist)
             console.log(result)
             setLoading(true)
-            if(result.length > 0) {
+            if (result.length > 0) {
                 goToDetailPage(navigate, pathParams.playlist)
             }
 
@@ -71,26 +72,30 @@ export const AddMusicByPlaylist = () => {
     }, [])
 
     return (
-        <Style.PopupContainer>
-            <Style.PopupContent className="music-list">
-                <Style.HeaderPopUp>
-                    <Style.PopupTitle>Lista de músicas </Style.PopupTitle>
-                    <CloseIcon onClick={() => { goToDetailPage(navigate, pathParams.playlist) }} />
-                </Style.HeaderPopUp>
-                {
-                    !loading &&
-                    (<>
-                        <Style.PopupList>
-                            {musicsForAdd.map((song) => (
-                                <PopUpListItem key={song.id} id={song.id} title={song.title} event={songSelected} selected={selected}>teste</PopUpListItem>
-                            ))}
-                        </Style.PopupList>
-                        <button onClick={() => {
-                            onConfirm()
-                        }}>Confirmar</button>
-                    </>) || <Loading />
-                }
-            </Style.PopupContent>
-        </Style.PopupContainer>
+        <>
+            <DetailPlaylist />
+            <Style.PopupContainer>
+                <Style.PopupContent className="music-list">
+                    <Style.HeaderPopUp>
+                        <Style.PopupTitle>Lista de músicas </Style.PopupTitle>
+                        <CloseIcon onClick={() => { goToDetailPage(navigate, pathParams.playlist) }} />
+                    </Style.HeaderPopUp>
+                    {
+                        !loading &&
+                        (<>
+                            <Style.PopupList>
+                                {musicsForAdd.map((song) => (
+                                    <PopUpListItem key={song.id} id={song.id} title={song.title} event={songSelected} selected={selected}>teste</PopUpListItem>
+                                ))}
+                            </Style.PopupList>
+                            <button onClick={() => {
+                                onConfirm()
+                            }}>Confirmar</button>
+                        </>) || <Loading />
+                    }
+                </Style.PopupContent>
+            </Style.PopupContainer>
+
+        </>
     );
 }
