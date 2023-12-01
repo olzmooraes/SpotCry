@@ -6,19 +6,19 @@ import {
   Button,
   HeaderLogo,
 } from "./Styles";
-import { goToLoginPage } from "../../routes/Coordinator";
+import { goToLoginPage, goToPlaylistByUser } from "../../routes/Coordinator";
 import { useEffect, useState } from "react";
-import { getTokenData } from "../../services/getTokenData";
+import Cookies from "js-cookie";
 
 export const Header = () => {
-  const [token, setToken] = useState(getTokenData(localStorage.getItem("token")) )
+  const [token, setToken] = useState(Cookies.get('token'))
   const navigate = useNavigate();
   const login = () => {
     localStorage.removeItem("token");
     goToLoginPage(navigate);
   };
   useEffect(()=>{
-    setToken(localStorage.getItem("token"))
+    setToken(Cookies.get('token'))
   }, [])
   return (
     <HeaderContainer>
@@ -26,8 +26,8 @@ export const Header = () => {
       {
         token && (
           <ButtonsContainer>
-            <Button>Minhas playlists</Button>
-            <Button onClick={login}>Minhas músicas</Button>
+            <Button onClick={()=>{goToPlaylistByUser(navigate)}}>Minhas playlists</Button>
+            <Button >Minhas músicas</Button>
           </ButtonsContainer>
         ) || (
           <ButtonsContainer>

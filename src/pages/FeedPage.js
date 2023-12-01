@@ -20,10 +20,15 @@ export function FeedPage() {
         protectedPage && (
           <>
             <Header />
-            <Style.FeedContainer>
-              <Playlists />
-              <Musics />
-            </Style.FeedContainer>
+            <Style.Main>
+              <Style.MyPlaylist>
+                MINHAS Playlists
+              </Style.MyPlaylist>
+              <Style.FeedContainer>
+                  <Playlists />
+                  <Musics />
+              </Style.FeedContainer>
+            </Style.Main>
           </>
         ) || <Loading />
       }

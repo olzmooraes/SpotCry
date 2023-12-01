@@ -15,7 +15,7 @@ export const LogoWithText = styled.div`
   flex-direction: column;
   align-items: center;
   > *{
-    width: 50%;
+    width: 40%;
   }
 `;
 

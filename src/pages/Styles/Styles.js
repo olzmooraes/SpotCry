@@ -19,7 +19,17 @@ export const FeedContainer = styled.div`
   display:flex;
   justify-content: center;
   alling-items: center;
-  margin: 0 20rem;
-  height: 100%;
   flex-direction: column;
+  width: 80vw;
+  padding-left: 10px;
+`
+export const Main = styled.div`
+  display:flex;
+  justify-content: center;
+  alling-items: center;
+  height: 100%;
+`
+export const MyPlaylist = styled.div`
+  width: 20vw;
+  background-color: orange;
 `

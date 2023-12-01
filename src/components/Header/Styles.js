@@ -23,7 +23,7 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   cursor: pointer;
   height: 100%;
-  width: 300px;
+  width: 30rem;
 `;
 
 export const Button = styled.div`

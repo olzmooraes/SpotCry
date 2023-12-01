@@ -12,6 +12,9 @@ export const goToFeed = (navigate) => {
 export const goToAddPlaylist = (navigate) => {
   navigate("/addplaylist");
 };
+export const goToPlaylistByUser = (navigate) => {
+  navigate(`/feed/myplaylist`);
+};
 export const goToAddMusic = (navigate) => {
   navigate("/addsongs");
 };

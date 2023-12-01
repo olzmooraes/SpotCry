@@ -8,6 +8,7 @@ import { AddPlaylist } from "../components/playlists/AddPlaylist";
 import { DetailPlaylist } from "../components/DetailPlaylist/DetailPlaylist";
 import { AddMusic } from "../components/musics/AddMusics";
 import { AddMusicByPlaylist } from "../components/musics/AddMusicsByPlaylist";
+import { PlaylistByUser } from "../components/PlaylistByUser/PlaylistByUser";
 
 const Router = () => (
   <Routes>
@@ -16,6 +17,7 @@ const Router = () => (
     <Route exact path="/addplaylist" element={<AddPlaylist />} />
     <Route exact path="/addsongs" element={<AddMusic />} />
     <Route exact path="/feed" element={<FeedPage />} />
+    <Route exact path="/feed/myplaylist" element={<PlaylistByUser />} />
     <Route exact path="/DetailPlaylist/:playlist" element={<DetailPlaylist/>} />
     <Route exact path="/DetailPlaylist/:playlist/addMusics" element={<AddMusicByPlaylist/>} />
   </Routes>

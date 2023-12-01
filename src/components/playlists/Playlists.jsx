@@ -8,7 +8,6 @@ import logo from "../../assets/logoHeader.png";
 import * as Style from './Style'
 import { getTokenData } from '../../services/getTokenData';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { deletePlaylist } from '../../services/deletePlaylist';
 
 export const Playlists = () => {
@@ -32,11 +31,6 @@ export const Playlists = () => {
             console.error("Erro ao buscar playlists:", error);
         }
     };
-    const playlistDeleted = (id) => {
-        deletePlaylist(id)
-        const newPlaylist = playlists.filter(playlist => playlist._id !== id);
-        setPlaylists(newPlaylist)
-    }
     const addPlaylist = () => {
         goToAddPlaylist(navigate)
     }
@@ -48,7 +42,6 @@ export const Playlists = () => {
                     {Array.isArray(playlists) &&
                         playlists.map((playlist, index) => (
                             <Style.CardContainer onClick={() => { goToDetailPage(navigate, playlist._id) }} key={playlist._id}>
-                                <DeleteForeverIcon onClick={() => { playlistDeleted(playlist._id) }} />
                                     <Style.CardImage src={logo} alt="imagemPlaylist" />
                                     <Style.CardInfo>
                                         <Style.CardTitle>{playlist._name}</Style.CardTitle>
