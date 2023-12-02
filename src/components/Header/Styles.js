@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { COLORS } from "../../constants/colors";
 
 export const HeaderLogo = styled.img`
-    margin-left: 20px;
+    padding-right:50px;
     width: 25%;
     margin-top: 30px;
+    z-index:1;
 `;
 
 export const HeaderContainer = styled.div`
@@ -14,7 +15,7 @@ export const HeaderContainer = styled.div`
   height: 100px;
   background-color: ${COLORS.iceblue};
   top: 0;
-  z-index: 1;
+  z-index: 1000;
   padding: 0 15%;
 `;
 

@@ -30,10 +30,12 @@ export const UserContainer = Styled.div`
 export const UserInfo = Styled.div`
   margin-top: 8px;
   text-align: center;
+  cursor: pointer;
 `;
 
 export const UserImage = Styled.img`
-    width: 70px
+    width: 30%;
+    cursor: pointer;
 `;
 export const UserMyPlaylists = Styled.h4`
 font-family: 'Arial', sans-serif;

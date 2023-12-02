@@ -1,6 +1,6 @@
 import * as Style from "./Style";
 import { useState, useEffect } from "react";
-import { goBack, goToDetailPage } from "../../routes/Coordinator";
+import { goBack, goToAddPlaylist, goToDetailPage } from "../../routes/Coordinator";
 import { deletePlaylist } from "../../services/deletePlaylist"
 import { useNavigate } from "react-router-dom";
 import { getTokenData } from "../../services/getTokenData";
@@ -46,9 +46,9 @@ export const PlaylistByUser = () => {
                 {  !loading &&
                     playlists.map((playlist, index) => (
                         <div key={playlist._id}>
-                            <Style.UserContainer onClick={() => { goToDetailPage(navigate, playlist._id) }} key={playlist._id}>
-                                <Style.UserImage src={logo} alt="imagemPlaylist" />
-                                <Style.UserInfo>
+                            <Style.UserContainer key={playlist._id}>
+                                <Style.UserImage onClick={() => { goToDetailPage(navigate, playlist._id) }} src={logo} alt="imagemPlaylist" />
+                                <Style.UserInfo onClick={() => { goToDetailPage(navigate, playlist._id) }}>
                                     <Style.UserTitle>{playlist._name}</Style.UserTitle>
                                     <Style.UserDescription>{playlist._description}</Style.UserDescription>
                                 </Style.UserInfo>

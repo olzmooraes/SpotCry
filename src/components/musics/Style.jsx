@@ -5,13 +5,16 @@ export const Title = styled.h1`
     color: ${COLORS.darkGray};
     margin: 20px 0;
 `
-
+export const AllSongs = styled.div`
+  //height: calc(100% - 100px - 252px) !important;
+  height: 52.5vh;
+`
 export const CardMusic = styled.div`
 display: flex;
   flex-direction: column;
   padding-bottom: 10px;
-  max-height: 500px;
   overflow-y: scroll;
+  max-height: 80%;
   &::-webkit-scrollbar {
     width:5px;
   }
@@ -62,13 +65,14 @@ export const CardAdd = styled.div`
   justify-content: center;
 `;
 
-// COMECA OS STYLED COMPONENTS DO COMPONENTE DE ADICIONAR PLAYLIST
+// COMECA OS STYLED COMPONENTS DO COMPONENTE DE ADICIONAR MUSIC
 
 export const ContainerAddMusic = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: transparent !important;
 `;
 
 // Estilos para o formulário

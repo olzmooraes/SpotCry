@@ -7,6 +7,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { v4 } from "uuid";
 import { addPlaylist } from "../../services/addPlaylist";
 import { Loading } from "../loading/Loading";
+import {FeedPage} from "../../pages/FeedPage"
 
 export const AddPlaylist = () => {
     const [name, setName] = useState()
@@ -40,32 +41,30 @@ export const AddPlaylist = () => {
             console.log("Erro ao adicionar playlist", e)
         }
     }
-    useEffect(() => {
-        if (loading) {
-            backFeed(navigate)
-        }
-    }, [loading])
     return (
-        <Style.ContainerAddPlaylist>
-            <Style.BackButtonAddPlaylist onClick={backFeed}>Voltar</Style.BackButtonAddPlaylist>
-            <Style.FormAddPlaylist>
-                <Style.LeftContentAddPlaylist>
-                    <Style.TitleAddPlaylist>Adicionar PLaylist</Style.TitleAddPlaylist>
-                    <Style.ImageAddPlaylist src={logo} alt="AddPlaylistImage" />
-                </Style.LeftContentAddPlaylist>
-                <Style.FormInputsAddPlaylist>
-                    {
-                        !loading && (
-                            <>
-                                <Style.InputAddPlaylist type="text" className="nome" placeholder="Nome" onChange={(e) => { addName(e) }} />
-                                <Style.InputAddPlaylist type="text" className="descricao" placeholder="Descrição" onChange={(e) => { addDescription(e) }} />
-                                <Style.ButtonAddPlaylist onClick={() => { postNewPlaylist(name, description) }}>Concluir</Style.ButtonAddPlaylist>
-                            </>
-                        ) || <Loading/>
-                    }
+        <>
+            <FeedPage/>
+            <Style.ContainerAddPlaylist>
+                <Style.BackButtonAddPlaylist onClick={backFeed}>Voltar</Style.BackButtonAddPlaylist>
+                <Style.FormAddPlaylist>
+                    <Style.LeftContentAddPlaylist>
+                        <Style.TitleAddPlaylist>Adicionar PLaylist</Style.TitleAddPlaylist>
+                        <Style.ImageAddPlaylist src={logo} alt="AddPlaylistImage" />
+                    </Style.LeftContentAddPlaylist>
+                    <Style.FormInputsAddPlaylist>
+                        {
+                            !loading && (
+                                <>
+                                    <Style.InputAddPlaylist type="text" className="nome" placeholder="Nome" onChange={(e) => { addName(e) }} />
+                                    <Style.InputAddPlaylist type="text" className="descricao" placeholder="Descrição" onChange={(e) => { addDescription(e) }} />
+                                    <Style.ButtonAddPlaylist onClick={() => { postNewPlaylist(name, description) }}>Concluir</Style.ButtonAddPlaylist>
+                                </>
+                            ) || <Loading/>
+                        }
 
-                </Style.FormInputsAddPlaylist>
-            </Style.FormAddPlaylist>
-        </Style.ContainerAddPlaylist>
+                    </Style.FormInputsAddPlaylist>
+                </Style.FormAddPlaylist>
+            </Style.ContainerAddPlaylist>
+        </>
     )
 }

@@ -35,7 +35,7 @@ export const Musics = () => {
   }
   if (!loading) {
     return (
-      <div>
+      <Style.AllSongs>
         <Style.Title>All Songs <AddCircleOutline onClick={addmusic} /> </Style.Title>
         <Style.CardMusic>
           {Array.isArray(musics) &&
@@ -52,7 +52,7 @@ export const Musics = () => {
               </Style.CardContainer>
             ))}
         </Style.CardMusic>
-      </div>
+      </Style.AllSongs>
     )
   } else {
     return (
