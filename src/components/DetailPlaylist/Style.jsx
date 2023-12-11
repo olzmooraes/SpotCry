@@ -32,7 +32,7 @@ align-items: center;
 height: 100vh;
 `;
 
-export const RemoveCircle = Styled.button`
+export const RemoveIcon = Styled.button`
 display: flex;
 justify-content: center;
 align-items: center;

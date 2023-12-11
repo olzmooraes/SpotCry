@@ -16,7 +16,7 @@ import { ThumbNail } from "../ThumbNail/ThumbNail";
 import { getTokenData } from "../../services/getTokenData";
 import HomeIcon from '@mui/icons-material/Home';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import RemoveIcon from '@mui/icons-material/EditNote';
+import RemoveIcon from '@mui/icons-material/RemoveCircle';
 import { deleteTrackPlaylist } from "../../services/deleteTrackPlaylist";
 
 export const DetailPlaylist = () => {
@@ -141,10 +141,8 @@ export const DetailPlaylist = () => {
                                 </Style.MusicName>
                                 <Style.MusicArtist>
                                     {elemento.artist}
-                                </Style.MusicArtist>
-                                <RemoveIcon onClick={() => handleRemoveMusic(elemento.id)} />
+                                </Style.MusicArtist>{authenticated && (<RemoveIcon onClick={() => handleRemoveMusic(elemento.id)} />)}
                             </Style.MusicContainer>
-
                         )
                     }) || <Loading />
                 }
