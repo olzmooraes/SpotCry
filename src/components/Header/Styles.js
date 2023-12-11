@@ -3,7 +3,7 @@ import { COLORS } from "../../constants/colors";
 
 export const HeaderLogo = styled.img`
     padding-right:50px;
-    width: 25%;
+    width: 10rem;
     margin-top: 30px;
     z-index:1;
 `;

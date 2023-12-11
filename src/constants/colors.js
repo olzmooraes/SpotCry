@@ -1,5 +1,5 @@
 export const COLORS = {
-    iceblue: "#22bbb8",
+    iceblue: "#00B050",
     darkGray: "#272727",
     purple: "#591045",
     white: "#FCFCFC",
