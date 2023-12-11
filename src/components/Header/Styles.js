@@ -46,9 +46,36 @@ export const Button = styled.div`
   }
 `;
 
-export const Pesquise = styled.input`
-  border-radius: 3px;
-  tex-declaration: none;
-  width: 200%;
-  height: 50px;
-`
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const PesquiseInput = styled.input`
+  height: 2rem;
+  width: 20rem;
+  padding-left: 10px;
+  border: 3px solid transparent;
+  border-radius: 4px;
+`;
+
+export const SearchButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-left: 2px;
+`;
+
+export const SearchIcon = styled.img`
+  height: 2rem;
+  width: 2rem;
+  border: 3px solid transparent;
+  border-radius: 4px;
+  transition: border 0.3s ease;
+
+  &:hover {
+    border-color: ${COLORS.darkGray};
+  }
+`;
+

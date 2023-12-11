@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logoHeader.png";
+import search from "../../assets/search.png";
 import {
   HeaderContainer,
   ButtonsContainer,
   Button,
-  Pesquise,
+  SearchContainer, 
+  PesquiseInput,   
+  SearchIcon,      
+  SearchButton,    
   HeaderLogo,
 } from "./Styles";
 import { goToLoginPage, goToPlaylistByUser } from "../../routes/Coordinator";
@@ -18,26 +22,40 @@ export const Header = () => {
     localStorage.removeItem("token");
     goToLoginPage(navigate);
   };
-  useEffect(()=>{
+  useEffect(() => {
     setToken(Cookies.get('token'))
   }, [])
+
+  const SearchBar = () => {
+    const performSearch = () => {
+      // Adicione a lógica de pesquisa aqui
+    }
+
+    return (
+      <SearchContainer>
+        <PesquiseInput type="text" placeholder="Pesquisar..." />
+        <SearchButton onClick={performSearch}>
+          <SearchIcon src={search} alt="Ícone de Pesquisa" />
+        </SearchButton>
+      </SearchContainer>
+    );
+  };
+  
   return (
     <HeaderContainer>
       <HeaderLogo src={logo} alt="logo" />
-      {
-        token && (
-          <ButtonsContainer>
-            {/* <Button onClick={()=>{goToPlaylistByUser(navigate)}}>Minhas playlists</Button> 
-            <Button >Minhas músicas</Button>*/}
-            <Pesquise type="text" placeholder="Pesquise músicas, playlists, artistas" />
-          </ButtonsContainer>
-        ) || (
-          <ButtonsContainer>
-            <Button>Inscrever</Button>
-            <Button onClick={login}>Entrar</Button>
-          </ButtonsContainer>
-        )
-      }
+      {token ? (
+        <ButtonsContainer>
+          <SearchBar />
+        </ButtonsContainer>
+      ) : (
+        <ButtonsContainer>
+          <Button>Inscrever</Button>
+          <Button onClick={login}>Entrar</Button>
+        </ButtonsContainer>
+      )}
     </HeaderContainer>
   );
 };
+
+export default Header;
