@@ -121,7 +121,7 @@ export const DetailPlaylist = () => {
                     {
                         !loadingDetailPLaylist && (
                             <>
-                                <Style.PlaylistName>{detailPlaylist._name} {authenticated && (<EditNoteIcon />)}</Style.PlaylistName>
+                                <Style.PlaylistName>{detailPlaylist._name}</Style.PlaylistName>
                                 <Style.ArtistSubtitle>{detailPlaylist._description}</Style.ArtistSubtitle>
                             </>)
                         || (<Loading />)
