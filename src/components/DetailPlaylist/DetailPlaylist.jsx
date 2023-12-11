@@ -16,6 +16,8 @@ import { ThumbNail } from "../ThumbNail/ThumbNail";
 import { getTokenData } from "../../services/getTokenData";
 import HomeIcon from '@mui/icons-material/Home';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import RemoveIcon from '@mui/icons-material/EditNote';
+import { deleteTrackPlaylist } from "../../services/deleteTrackPlaylist";
 
 export const DetailPlaylist = () => {
     const [loading, setLoading] = useState(true);
@@ -71,6 +73,16 @@ export const DetailPlaylist = () => {
             console.error("Erro ao buscar Musicas:", e);
         }
     }
+
+    const handleRemoveMusic = async (musicId) => {
+        try {
+            await deleteTrackPlaylist(pathParams.playlist, musicId);
+            const updatedSongs = detailSongs.filter(song => song.id !== musicId);
+            setDetailSongs(updatedSongs);
+        } catch (error) {
+            console.error("Erro ao remover a música:", error);
+        }
+    };
 
     const feed = (navigation) => {
         goToFeed(navigation)
@@ -130,6 +142,7 @@ export const DetailPlaylist = () => {
                                 <Style.MusicArtist>
                                     {elemento.artist}
                                 </Style.MusicArtist>
+                                <RemoveIcon onClick={() => handleRemoveMusic(elemento.id)} />
                             </Style.MusicContainer>
 
                         )

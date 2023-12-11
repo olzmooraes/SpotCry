@@ -32,6 +32,12 @@ align-items: center;
 height: 100vh;
 `;
 
+export const RemoveCircle = Styled.button`
+display: flex;
+justify-content: center;
+align-items: center;
+`;
+
 export const MusicContainer = Styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
