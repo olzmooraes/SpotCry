@@ -210,3 +210,16 @@ export const HeaderPopUp = styled.div`
   margin: 0 0 20px 0;
   font-size: 1rem;
 `;
+
+export const TableHeaders = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: ${COLORS.lightGray};
+  padding: 10px;
+  cursor: pointer;
+`;
+
+export const TableHeader = styled.div`
+  flex: 1;
+  text-align: center;
+`;

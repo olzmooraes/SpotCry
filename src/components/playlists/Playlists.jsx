@@ -37,7 +37,7 @@ export const Playlists = () => {
     if (!loading) {
         return (
             <Style.AllPlaylist>
-                <Style.Title>All Playlists <AddCircleOutline onClick={addPlaylist} /></Style.Title>
+                <Style.Title>Todas as Playlists <AddCircleOutline onClick={addPlaylist} /></Style.Title>
                 <Style.CardPlaylist>
                     {Array.isArray(playlists) &&
                         playlists.map((playlist, index) => (
