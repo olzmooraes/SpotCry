@@ -14,8 +14,8 @@ import logo from '../../assets/logoHeader.png';
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { ThumbNail } from "../ThumbNail/ThumbNail";
 import { getTokenData } from "../../services/getTokenData";
+import HomeIcon from '@mui/icons-material/Home';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import { BackButton } from "../../constants/BackButton";
 
 export const DetailPlaylist = () => {
     const [loading, setLoading] = useState(true);
@@ -55,6 +55,7 @@ export const DetailPlaylist = () => {
         const musics = await getMusicsFromUser()
         setMusicsForAdd(musics.data.songs)
     }
+
     const getDetailMusic = async () => {
         try {
             const songOld = []
@@ -70,9 +71,7 @@ export const DetailPlaylist = () => {
             console.error("Erro ao buscar Musicas:", e);
         }
     }
-    // const onCancel = () => {
-    //     setVisible(false)
-    // }
+
     const feed = (navigation) => {
         goToFeed(navigation)
     }
@@ -91,18 +90,20 @@ export const DetailPlaylist = () => {
     }, [idSongs])
 
     useEffect(() => {
-        if(detailPlaylist != undefined){
-            if (userId == detailPlaylist._userId) { 
-                setAuthenticated(true) 
-            }else { 
-                setAuthenticated(false) 
+        if (detailPlaylist != undefined) {
+            if (userId == detailPlaylist._userId) {
+                setAuthenticated(true)
+            } else {
+                setAuthenticated(false)
             }
         }
     }, [detailPlaylist])
     return (
         <>
-            <BackButton navigation={feed}/>
             <Style.Header>
+                <Style.Home onClick={() => feed(navigate)}>
+                    <HomeIcon />
+                </Style.Home>
                 <Style.PlaylistImage src={logo} alt='logoPlaylist' />
                 <Style.DivContent>
                     {
@@ -119,21 +120,21 @@ export const DetailPlaylist = () => {
             <Style.Main>
                 {authenticated && (<AddCircle onClick={() => { goToAddMusicByPlaylist(navigate, pathParams.playlist) }}></AddCircle>)}
                 {!loading &&
-                            detailSongs.map((elemento, index) => {
-                                return (
-                                    <Style.MusicContainer key={elemento.id + index}>
-                                        <ThumbNail url={elemento.url} name={elemento.titile} />
-                                        <Style.MusicName>
-                                            {elemento.title}
-                                        </Style.MusicName>
-                                        <Style.MusicArtist>
-                                            {elemento.artist}
-                                        </Style.MusicArtist>
-                                    </Style.MusicContainer>
+                    detailSongs.map((elemento, index) => {
+                        return (
+                            <Style.MusicContainer key={elemento.id + index}>
+                                <ThumbNail url={elemento.url} name={elemento.titile} />
+                                <Style.MusicName>
+                                    {elemento.title}
+                                </Style.MusicName>
+                                <Style.MusicArtist>
+                                    {elemento.artist}
+                                </Style.MusicArtist>
+                            </Style.MusicContainer>
 
-                                )
-                            }) || <Loading/>
-                        } 
+                        )
+                    }) || <Loading />
+                }
             </Style.Main>
         </>
     )

@@ -2,17 +2,26 @@ import Styled from 'styled-components'
 import {COLORS} from '../../constants/colors'
 
 
-export const Button = Styled.button`
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  &:hover {
-    background-color: #0056b3;
-  }
+export const Home = Styled.button`
+padding: 2rem 2rem;
+background-color: ${COLORS.iceblue};
+border: 1px;
+border-radius: 1px;
+border-color: ${COLORS.darkGray};
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background-color 0.3s ease;
+
+svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+&:hover {
+  background-color: ${COLORS.darkGray};
+}
 `;
 
 
@@ -84,9 +93,9 @@ export const Header = Styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30vh;
+  height: 20vh;
   width: 100%;
-  background-color: ${COLORS.gray};
+  background-color: ${COLORS.iceblue};
 `;
 export const DivContent = Styled.div`
   display: flex;
@@ -94,17 +103,17 @@ export const DivContent = Styled.div`
   flex-direction: column;
 `;
 export const PlaylistImage = Styled.img`
-  width: 200px; 
-  height: 200px; 
-  object-fit: cover; /* Para garantir que a imagem se ajuste corretamente */
+  width: 5rem; 
+  height: 5rem; 
+  object-fit: cover;
 `;
 
 export const PlaylistName = Styled.h1`
   margin-top: 10px;
   font-size: 1.5em;
+  padding-left: 10px;
 `;
 
 export const ArtistSubtitle = Styled.h2`
   font-size: 1em; 
-  color: #888; 
 `;
