@@ -70,9 +70,9 @@ export const DetailPlaylist = () => {
             console.error("Erro ao buscar Musicas:", e);
         }
     }
-    const onCancel = () => {
-        setVisible(false)
-    }
+    // const onCancel = () => {
+    //     setVisible(false)
+    // }
     const feed = (navigation) => {
         goToFeed(navigation)
     }
