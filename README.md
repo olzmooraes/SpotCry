@@ -1,25 +1,24 @@
 # **SpotiCry Web App**
 
-Uma aplicação web para gerenciar músicas e playlists utilizando a API SpotiCry.
-
-![exemplo](exemploFront.png)
+SpotiCry Web App é uma aplicação web para gerenciar músicas e playlists utilizando a API SpotiCry.
 
 ## **Índice**
 
-- Funcionalidades
-- Tecnologias Utilizadas
-- Instalação e Uso
-- Contribuição
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Instalação e Uso](#instalação-e-uso)
+- [Contribuição](#contribuição)
+- [Demo](#demo)
 
 ## **Funcionalidades**
 
-- Registro e Autenticação de Usuário.
-- Gestão de Músicas: Listar, Adicionar, Editar, Excluir.
-- Gestão de Playlists: Criar, Listar, Editar, Excluir, Adicionar músicas, Remover músicas, Buscar por título.
+- Registro e autenticação de usuário.
+- Gestão de músicas: Listar, Adicionar, Editar, Excluir.
+- Gestão de playlists: Criar, Listar, Editar, Excluir, Adicionar músicas.
 
 ## **Tecnologias Utilizadas**
 
-- Frontend: React, Axios
+- **Frontend:** React, Axios
 
 ## **Instalação e Uso**
 
@@ -54,4 +53,6 @@ Contribuições são sempre bem-vindas! Para contribuir:
 
 ## **Demo**
 
-Você pode acessar uma versão ao vivo do SpotiCry Web App [aqui](https://flavioaamotta.github.io/spoticry-front/).
+Você pode acessar uma versão ao vivo do SpotiCry Web App [aqui](https://github.com/olzmooraes/SpotCry.git/).
+
+---
