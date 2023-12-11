@@ -40,6 +40,7 @@ export const AddPlaylist = () => {
         } catch (e) {
             console.log("Erro ao adicionar playlist", e)
         }
+        backFeed();
     }
     return (
         <>
@@ -48,7 +49,7 @@ export const AddPlaylist = () => {
                 <Style.BackButtonAddPlaylist onClick={backFeed}>Voltar</Style.BackButtonAddPlaylist>
                 <Style.FormAddPlaylist>
                     <Style.LeftContentAddPlaylist>
-                        <Style.TitleAddPlaylist>Adicionar PLaylist</Style.TitleAddPlaylist>
+                        <Style.TitleAddPlaylist>Adicionar Playlist</Style.TitleAddPlaylist>
                         <Style.ImageAddPlaylist src={logo} alt="AddPlaylistImage" />
                     </Style.LeftContentAddPlaylist>
                     <Style.FormInputsAddPlaylist>

@@ -14,7 +14,7 @@ export const addPlaylist = (playlist, navigate) => {
         },
             {headers: { Authorization: token }, }
         ).then(() =>{
-            alert("Playlist criada")
+            alert("Playlist criada");
         })
     } catch (e) {
         alert("error")
